@@ -33,7 +33,14 @@ git-recipes
   
 **第4篇 Git实用贴士**
 
- - **第1章** 代码合并：Merge、Rebase的选择
+ - **第1章** [代码合并：Merge、Rebase的选择](https://github.com/geeeeeeeeek/git-recipes/blob/master/%E4%BB%A3%E7%A0%81%E5%90%88%E5%B9%B6:Merge%E8%BF%98%E6%98%AFRebase.md)
+
+	`git rebase` 和`git merge` 都是用来合并分支，只不过方式不太相同。`git rebase` 经常被人认为是一种Git巫术，初学者应该避而远之。但如果使用得当，它能省去太多烦恼。在这篇文章中，我们会通过比较找到Git工作流中所有可以使用rebase的机会。
+
+	 - 概述
+	 - Rebase的黄金法则
+	 - 工作流
+	 - 总结
  
  - **第2章** [代码回滚：Reset、Checkout、Revert的选择](https://github.com/geeeeeeeeek/git-recipes/blob/master/%E5%9B%9E%E6%BB%9A%E5%91%BD%E4%BB%A4Reset%E3%80%81Checkout%E3%80%81Revert%E8%BE%A8%E6%9E%90.md)
 
