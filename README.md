@@ -7,22 +7,44 @@ git-recipes
 **第1篇 Git**
 
   
-**第2篇 Git快速入门**
+**第2篇 从零搭建本地代码仓库**
 
- - **第1章** [从零搭建本地代码仓库](https://github.com/geeeeeeeeek/git-recipes/blob/master/Git%E7%AE%80%E6%98%93%E6%8C%87%E5%8D%97(%E4%B8%8A).md)
+ - **第1章** [快速指南](https://github.com/geeeeeeeeek/git-recipes/blob/master/Git%E7%AE%80%E6%98%93%E6%8C%87%E5%8D%97(%E4%B8%8A).md)
 
 	这节完全面向入门者。我假设你从零开始创建一个项目并且想用Git来进行版本控制，我们会讨论如何在你的个人项目中使用Git，比如如何初始化你的项目，如何管理新的或者已有的文件，如何在远端仓库中储存你的代码。
+	
 	 - 安装Git
 	 - 检出仓库
 	 - 创建新仓库
 	 - 工作流
 	 - 添加与提交
 	 - 推送改动
-	
- - **第2章** 多分支上的协作和管理
+
+ - **第2章** 创建代码仓库
+
+ - **第3章** 保存你的更改
+
+ - **第4章** 查看仓库状态
+
+ - **第5章** 查看以前的提交
+
+ - **第6章** 回滚错误的更改
+
+ - **第7章** 重写项目历史
+
+**第3章 远程团队协作和管理**
+
+ - **第1章** 快速指南 
  
+ - **第2章** 同步代码
+
+ - **第3章** 创建Pull Request
+
+ - **第4章** 使用分支
+
+ - **第5章** 几种工作流
   
-**第3篇 Git命令详解**
+**第4篇 Git命令详解**
 
  - 第1章 [图解Git命令](https://github.com/geeeeeeeeek/git-recipes/blob/master/Git%E5%9B%BE%E8%A7%A3.md)
 
@@ -31,7 +53,7 @@ git-recipes
 	 - 约定
 	 - 命令详解
   
-**第4篇 Git实用贴士**
+**第5篇 Git实用贴士**
 
  - **第1章** [代码合并：Merge、Rebase的选择](https://github.com/geeeeeeeeek/git-recipes/blob/master/%E4%BB%A3%E7%A0%81%E5%90%88%E5%B9%B6:Merge%E8%BF%98%E6%98%AFRebase.md)
 
@@ -61,7 +83,7 @@ git-recipes
  
  - **第5章** Git ref引用
 
-**第5篇 Git应用实践：用GitLab搭建一个课程教学仓库**
+**第6篇 Git应用实践：用GitLab搭建一个课程教学仓库**
 
  - **第1章** 教师和学生的最佳实践指南
 
