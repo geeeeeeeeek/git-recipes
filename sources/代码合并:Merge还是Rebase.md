@@ -5,13 +5,13 @@
 > 
 > 这是一篇在[原文](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名([CC BY 2.5 AU](http://creativecommons.org/licenses/by/2.5/au/deed.zh))协议共享。
 
-`git rebase` 这个命令经常被人认为是一种Git巫术，初学者应该避而远之。但如果使用得当的话，它能给你的团队开发省去太多烦恼。在这篇文章中，我们会比较`git rebase` 和类似的`git merge` 命令，找到Git工作流中所有可以使用rebase的机会。
+`git rebase` 这个命令经常被人认为是一种Git巫术，初学者应该避而远之。但如果使用得当的话，它能给你的团队开发省去太多烦恼。在这篇文章中，我们会比较`git rebase` 和类似的`git merge` 命令，找到Git工作流中rebase的所有用法。
 
 概述
 ---
 你要知道的第一件事是，`git rebase` 和`git merge` 做的事其实是一样的。它们都被设计来将一个分支的更改并入另一个分支，只不过方式有些不同。
 
-想象一下，你刚开始在一个专门的分支上开发新功能，然后团队中另一个成员在master分支上添加了新的commit。这就会造成commit历史被Fork一份，这对于所有用Git来协作的开发者来说都很熟悉。
+想象一下，你刚创建了一个专门的分支开发新功能，然后团队中另一个成员在master分支上添加了新的commit。这就会造成提交历史被Fork一份，用Git来协作的开发者应该都很清楚。
 
 ![enter image description here](https://www.atlassian.com/git/images/tutorials/advanced/merging-vs-rebasing/01.svg)
 
@@ -19,13 +19,13 @@
 
 ### Merge
 
-将master分支合并到feature分支最简单的办法就是下面这些命令：
+将master分支合并到feature分支最简单的办法就是用下面这些命令：
 
 ```
 git checkout feature
 git merge master
 ```
-或者。你也可以把它们缩在一行里。
+或者。你也可以把它们压缩在一行里。
 ```
 git merge master feature
 ```
@@ -52,9 +52,9 @@ git rebase master
 
 ![enter image description here](https://www.atlassian.com/git/images/tutorials/advanced/merging-vs-rebasing/03.svg)
 
-rebase最大的好处是你的项目历史会非常整洁。首先，它不像`git merge` 那样引入不必要的merge commit。其次，如上图所示，rebase导致最后的项目历史呈现出完美的线性——你可以从项目终点到起点浏览而不需要任何的Fork。这让你更容易使用	`git log` 、`git bisect` 和`gitk` 来查看项目历史。
+rebase最大的好处是你的项目历史会非常整洁。首先，它不像`git merge` 那样引入不必要的merge commit。其次，如上图所示，rebase导致最后的项目历史呈现出完美的线性——你可以从项目终点到起点浏览而不需要任何的Fork。这让你更容易使用`git log` 、`git bisect` 和`gitk` 来查看项目历史。
 
-不过，这种简单的commit历史会带来两个后果：安全性和可跟踪性。如果你违反了Rebase黄金法则，重写项目历史可能会给你的协作工作流带来灾难性的影响。以及rebase不会有merge commit中附带的信息——你看不到feature分支中并入了上游的哪些更改。
+不过，这种简单的commit历史会带来两个后果：安全性和可跟踪性。如果你违反了Rebase黄金法则，重写项目历史可能会给你的协作工作流带来灾难性的影响。此外，rebase不会有merge commit中附带的信息——你看不到feature分支中并入了上游的哪些更改。
 
 ### 交互式的rebase
 
@@ -102,7 +102,7 @@ Rebase的黄金法则
 
 同步两个master分支的唯一办法是把它们merge到一起，导致一个额外的merge commit和两堆包含同样更改的commit。不用说，这会让人非常困惑。
 
-所以，在你运行`git rebase` 之前，一定要问问你自己“有没有别人正在这个分支上工作？”。如果答案就是有，那么把你的爪子放回去，重新找到一个无害的方式（如`git revert`）来提交你的更改。不如，你可以随心所欲地重写历史。
+所以，在你运行`git rebase` 之前，一定要问问你自己“有没有别人正在这个分支上工作？”。如果答案是有，那么把你的爪子放回去，重新找到一个无害的方式（如`git revert`）来提交你的更改。不如，你可以随心所欲地重写历史。
 
 ### 强制push
 如果你想把rebase之后的master分支push到远程仓库中去的话，Git会阻止你这么做，因为两个分支有冲突。但你可以传入`--force` 标记来强行push。就像下面一样：
@@ -148,7 +148,7 @@ git rebase -i HEAD~3
 git merge-base feature master
 ```
 
-交互式rebase是在你工作流中引入`git rebase` 的的好办法，因为它只影响本地分支。其他开发者只能看到你已经完成的结果，那就是一个非常正解、易于追踪的分支历史。
+交互式rebase是在你工作流中引入`git rebase` 的的好办法，因为它只影响本地分支。其他开发者只能看到你已经完成的结果，那就是一个非常整洁、易于追踪的分支历史。
 
 但同样的，这只能用在私有分支上。如果你在同一个feature分支和其他开发者合作的话，这个分支是公开的，你不能重写这个历史。
 
@@ -178,7 +178,7 @@ By default, the git pull command performs a merge, but you can force it to integ
 
 ### 用Pull Request进行审查
 
-如果你将pull request作为你代码审查过程中的一换，你需要避免在创建pull request之后使用`git rebase`。只要你发起了pull request，其他开发者能看到你的代码，也就是说这个分支变成了公共分支。重写历史会造成Git和你的同事难以找到这个分支接下来的任何commit。
+如果你将pull request作为你代码审查过程中的一环，你需要避免在创建pull request之后使用`git rebase`。只要你发起了pull request，其他开发者能看到你的代码，也就是说这个分支变成了公共分支。重写历史会造成Git和你的同事难以找到这个分支接下来的任何commit。
 
 来自其他开发者的任何更改都应该用`git merge` 而不是`git rebase` 来并入。
 

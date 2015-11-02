@@ -5,17 +5,17 @@ Git log高级用法
 > 
 > 这是一篇在[原文](https://www.atlassian.com/git/tutorials/git-log)基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名([CC BY 2.5 AU](http://creativecommons.org/licenses/by/2.5/au/deed.zh))协议共享。
 
-每一个版本控制系统的目的都是为了记录你代码的变化。你可以看到你项目的历史记录——谁贡献了什么，找出bug是什么时候引入的，还有撤回一些有问题的更改。但是，掌控这些的前提是你知道如何来使用它。这就是为什么会有`git log` 这个命令。
+每一个版本控制系统的出现都是为了让你记录代码的变化。你可以看到项目的历史记录——谁贡献了什么、bug是什么时候引入的，还可以撤回有问题的更改。但是，首先你得知道如何来使用它。这也就是为什么会有`git log` 这个命令。
 
-到现在为止，你应该已经知道如何用`git log` 命令来显示最基本的commit的信息。但是，你还可以传入各种不同的参数来获得不一样的输出。
+到现在为止，你应该已经知道如何用`git log` 命令来显示最基本的提交信息。但除此之外，你还可以传入各种不同的参数来获得不一样的输出。
 
-`git log` 有两个高级用法：一是格式化commit输出的方式，二是过滤哪些commit要输出。这两个用法合二为一，你可以找到你项目中你需要的任何信息。
+`git log` 有两个高级用法：一是自定义commit的输出格式，二是过滤哪些commit要输出。这两个用法合二为一，你就可以找到你项目中你需要的任何信息。
 
 格式化Log输出
 ---
-首先，这篇文章会展示几种`git log` 格式化输出的例子。它们大多数只是通过标记来向`git log` 请求或多或少的信息。
+首先，这篇文章会展示几种`git log` 格式化输出的例子。大多数例子只是通过标记来向`git log` 请求或多或少的信息。
 
-如果你不喜欢默认的`git log` 格式，你可以用`git config` 的别名功能来为任何一种格式创建一个快捷方式。
+如果你不喜欢默认的`git log` 格式，你可以用`git config` 的别名功能来给你想要的格式创建一个快捷方式。
 
 ### Oneline
 
@@ -27,11 +27,11 @@ ad8621a Fix a bug in the feature
 16b36c6 Add a new feature
 23ad9ad Add the initial code base
 ```
-这对于获得你项目的大致情况是很有帮助的。
+它对于获得你项目的大致情况很有帮助。
 
 ### Decorate
 
-很多时候，知道每个commit关联的分支或者标签是很有用的。`--decorate` 标记让`git log` 显示指向这个commit的所有引用（比如说分支、标签等等）。
+很多时候，知道每个commit关联的分支或者标签很有用。`--decorate` 标记让`git log` 显示指向这个commit的所有引用（比如说分支、标签等）。
 
 这可以和另一个配置项一起使用。比如，执行`git log --oneline --decorate` 会将commit历史格式化成这样：
 
@@ -50,7 +50,7 @@ ad8621a (feature) Fix a bug in the feature
 
 `git log` 提供了很多选项来显示两个commit之间的差异。其中最常用的两个是`--stat` 和`-p`。
 
-`--stat` 选项显示每次commit对文件的增删数量（注意修改一行记作增加一行且删去一行）当你想要查看commit产生的变化时这会非常有用。比如说，下面这个commit在hello.py文件中增加了67行，删去了38行。
+`--stat` 选项显示每次commit的文件增删数量（注意修改一行记作增加一行且删去一行），当你想要查看commit引入的变化时这会非常有用。比如说，下面这个commit在hello.py文件中增加了67行，删去了38行。
 
 ```
 commit f2a238924e89ca1d4947662928218a06d39068c3
@@ -63,7 +63,7 @@ Date:   Fri Jun 25 17:30:28 2014 -0500
  1 file changed, 67 insertion(+), 38 deletions(-)
 ```
  
-文件名后面+和-号数量是这个commit造成的更改中增删的相对比例。它给你一个直观的感觉，关于每次commit做了什么。如果你想知道每次commit删改的绝对数量，你可以将`-p` 选项传入`git log` 。这样commit所有的删改都会被输出：
+文件名后面+和-的数量是这个commit造成的更改中增删的相对比例。它给你一个直观的感觉，关于这次commit有多少改动。如果你想知道每次commit删改的绝对数量，你可以将`-p` 选项传入`git log` 。这样commit所有的删改都会被输出：
 
 ```
 commit 16b36c697eb2d24302f89aa22d9170dfe609855b
@@ -81,7 +81,7 @@ index 18ca709..c673b40 100644
 +print("Hello, Git!")
 ```
 
-对于改动很多的commit来说，这个输出会变得又长又大。一般来说，当你输出所有删改的时候，你应该是想要查找某一具体的改动。这种情况你会想用`pickaxe` 选项。
+对于改动很多的commit来说，这个输出会变得又长又大。一般来说，当你输出所有删改的时候，你应该是想要查找某一具体的改动，这时你就要用到`pickaxe` 选项。
 
 ### Shortlog
 `git shortlog` 是一种特别的`git log` ，它是为创建发布声明设计的。它把每个commit按作者分类，显示commit信息的第一行。这样可以容易地看到谁做了什么。
@@ -119,7 +119,7 @@ For a simple repository with just 2 branches, this will produce the following:
 
 星号表明这个commit所在的分支，所以上面这个图的意思是`23ad9ad` 和`16b36c6` 这两个commit在topic分之上，其余的在master分支上。
 
-虽然这对简单的项目来说是个很好用的选项，但你可能会更喜欢gitk或SourceTree这些更强大的可视化工具来分析庞大的项目。
+虽然这对简单的项目来说是个很好用的选择，但你可能会更喜欢gitk或SourceTree这些更强大的可视化工具来分析大型项目。
 
 ### 自定义格式
 
@@ -143,10 +143,10 @@ John committed f12ca28 on Wed Jun 22 13:50:31 2014 -0500
 
 过滤提交历史
 ---
-格式化commit输出只是`git log` 其中一个用途。另一半是理解如何浏览整个提交历史。接下来的文章会介绍如果用`git log` 选择项目历史中的特定的commit。所有的用法都可以和上面讨论过的格式化选项结合起来。
+格式化commit输出只是`git log` 其中的一个用途。另一半是理解如何浏览整个提交历史。接下来的文章会介绍如何用`git log` 选择项目历史中的特定的commit。所有的用法都可以和上面讨论过的格式化选项结合起来。
 
 ### 按数量
-`git log` 最基础的过滤选项是限制显示的commit数量。当你只对最近几次commit感兴趣时，它会节省你一页一页查看的时间。
+`git log` 最基础的过滤选项是限制显示的commit数量。当你只对最近几次commit感兴趣时，它可以节省你一页一页查看的时间。
 
 你可以在后面加上`-<n>`选项。比如说，下面这个命令会显示最新的3次commit：
 ```
@@ -172,7 +172,7 @@ get log --after="yesterday"
 git log --after="2014-7-1" --before="2014-7-4"
 ```
 
-注意`--since` 、`--until` 标记和`--after` 、`--before` 标记是分别相同的。
+注意`--since` 、`--until` 标记和`--after` 、`--before` 标记分别是等价的。
 
 ### 按作者
 当你只想看某一特定作者的commit的时候，你可以使用`--author` 标记。它接受正则表达式，返回所有作者名字满足这个规则的commit。如果你知道那个作者的确切名字你可以直接传入文本字符串：
@@ -213,7 +213,7 @@ git log --grep="JRA-224:"
 git log -- foo.py bar.py
 ```
 
-`--` 参数告诉`git log` 接下来的参数是文件路径而不是分支名。如果分支名和文件名不可能冲突，你可以省略`--`。
+`--` 告诉`git log` 接下来的参数是文件路径而不是分支名。如果分支名和文件名不可能冲突，你可以省略`--`。
 
 ### 按内容
 
@@ -225,11 +225,11 @@ git log -S "Hello, World!"
 
 如果你想用正则表达式而不是字符串来搜索，你可以使用`-G"<regex>"` 标记。
 
-这是一个非常强大的调试工具，因为它让你定位所有影响代码中特定一行的commit。它甚至可以让你看到某一行是什么时候复制或者移动到另一个文件中去的。
+这是一个非常强大的调试工具，它能让你定位到所有影响代码中特定一行的commit。它甚至可以让你看到某一行是什么时候复制或者移动到另一个文件中去的。
 
 ### 按范围
 
-你可以传入commit的返回来筛选在那个范围内的commit。这个范围由下面这样的格式指定，其中< since > 和< until >是commit的引用：
+你可以传入范围来筛选commit。这个范围由下面这样的格式指定，其中< since > 和< until >是commit的引用：
 
 ```
 git log <since>..<until>
@@ -241,7 +241,7 @@ git log <since>..<until>
 git log master..feature
 ```
 
-其中的master..feature范围包含了在feature分支而不在feature分支中所有的commit。换句话说，这个命令可以看出从master分支Fork后feature分支发生了哪些变化。这可以像下面这样可视化：
+其中的master..feature范围包含了在feature分支而不在feature分支中所有的commit。换句话说，这个命令可以看出从master分支Fork到feature分支后发生了哪些变化。它可以这样可视化：
 
 ![enter image description here](https://www.atlassian.com/git/images/tutorials/advanced/git-log/01.svg)
 
@@ -249,7 +249,7 @@ git log master..feature
 
 ### 过滤出merge commit
 
-`git log` 默认会在输出中包括merge commit。但是，如果你的团队采用强制合并策略（意思是merge上游修改你的分支而不是将你的分支rebase到上游分支），你的项目历史中会有很多外来的commit。
+`git log` 输出时默认包括merge commit。但是，如果你的团队采用强制合并策略（意思是merge上游修改你的分支而不是将你的分支rebase到上游分支），你的项目历史中会有很多外来的commit。
 
 你可以通过`--no-merges` 标记来排除这些commit：
 
@@ -270,4 +270,4 @@ git log --merges
 
 你现在应该对使用`git log` 来格式化输出和选择你要显示的commit的用法比较熟悉了。它允许你查看你项目历史中任何需要的内容。
 
-这些技巧是你Git工具箱中重要的部分，不过注意`git log` 往往和其他Git命令连着使用。当你找到了你要的commit，你把它传给`git checkout` 、`git revert`  或是其他控制你提交历史的工具。所以，请不要停止继续学习Git的高级用法。
+这些技巧是你Git工具箱中重要的部分，不过注意`git log` 往往和其他Git命令连着使用。当你找到了你要的commit，你把它传给`git checkout` 、`git revert`  或是其他控制你提交历史的工具。所以，请继续坚持Git高级用法的学习。

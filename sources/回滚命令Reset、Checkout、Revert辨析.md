@@ -5,14 +5,14 @@ Reset、Checkout和Revert
 > 
 > 这是一篇在[原文](https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting)基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名([CC BY 2.5 AU](http://creativecommons.org/licenses/by/2.5/au/deed.zh))协议共享。
 
-`git reset`、`git checkout`和`git revert`是你的Git工具箱中最有用的一些命令。它们都是用来撤销代码仓库中的某些更改，而前两个命令不仅可以作用于commit，还可以作用于特定文件。
+`git reset`、`git checkout`和`git revert`是你的Git工具箱中最有用的命令。它们都用来撤销代码仓库中的某些更改，而前两个命令不仅可以作用于commit，还可以作用于特定文件。
 
 因为它们非常相似，所以我们经常会搞混，不知道什么场景下该用哪个命令。在这篇文章中，我们会比较`git reset`、`git checkout`和`git revert`最常见的用法。希望你在看完后能游刃有余地使用这些命令来管理你的仓库。 
 
 ![Git repo的主要组成](https://www.atlassian.com/git/images/tutorials/advanced/resetting-checking-out-and-reverting/01.svg)
 
 
-Git仓库有三个主要组成——工作目录，stage缓存和commit历史。这张图有助于理解每个命令到底产生了哪些影响。当你阅读的时候，牢记这张图。
+Git仓库有三个主要组成——工作目录，stage缓存和提交历史。这张图有助于理解每个命令到底产生了哪些影响。当你阅读的时候，牢记这张图。
 
 Commit层面的操作
 --------------
@@ -20,7 +20,7 @@ Commit层面的操作
 你传给`git reset`和`git checkout`的参数决定了它们的作用域。如果你没有包含文件路径，这些操作对所有commit生效。我们这一节要探讨的就是commit层面的操作。注意`git revert`没有文件层面的操作。
 
 ###Reset
-在commit层面上，reset将一个分支的末端指向另一个commit。这可以用来移除当前branch的一些commit。比如，下面这两条命令让hotfix分支向后回退了两个commit。
+在commit层面上，reset将一个分支的末端指向另一个commit。这可以用来移除当前分支的一些commit。比如，下面这两条命令让hotfix分支向后回退了两个commit。
 ```
 git checkout hotfix
 git reset HEAD~2
@@ -49,7 +49,7 @@ hotfix分支末端的两个commit现在变成了悬挂commit。也就是说，�
 ```
 git checkout hotfix
 ```
-上面这个命令做的不过是将HEAD移到一个新的分支，然后更新下工作目录。因为这可能会覆盖本地的修改，Git强制你commit或者stash工作目录中的所有更改，不如在checkout的时候这些更改都会丢失。不像`git reset`，`git checkout`没有移动这些分支。
+上面这个命令做的不过是将HEAD移到一个新的分支，然后更新工作目录。因为这可能会覆盖本地的修改，Git强制你commit或者stash工作目录中的所有更改，不如在checkout的时候这些更改都会丢失。不像`git reset`，`git checkout`没有移动这些分支。
 
 ![将 HEAD 从 master 移到 hotfix](https://www.atlassian.com/git/images/tutorials/advanced/resetting-checking-out-and-reverting/04.svg)
 除了分支之外，你还可以传入commit的引用来checkout到任意的commit。这和checkout到另一个分支是完全一样的：把HEAD移动到特定的commit。比如，下面这个命令会checkout到当前commit的祖父commit。
@@ -112,7 +112,7 @@ git checkout HEAD~2 foo.py
 -------
 你现在已经掌握了Git仓库中撤销更改的所有工具。`git reset`、`git checkout`、和 `git revert` 命令比较容易混淆，但当你想起它们工作目录、stage缓存和commit历史分别的影响，就会容易判断现在的情况下应该用那个命令。
 
-下面这个表格总结了这些命令最常用的使用场景。记得经常对照这个表格，毫无疑问在你的Git历程中你会用到好多次。
+下面这个表格总结了这些命令最常用的使用场景。记得经常对照这个表格，你使用Git时一定会经常用到。
 
 |命令|作用域|常用情景|
 |---|---|---|
