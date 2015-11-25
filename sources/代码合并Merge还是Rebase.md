@@ -1,5 +1,4 @@
-代码合并：Merge还是Rebase
-===
+# 代码合并：Merge还是Rebase
 
 > BY 童仲毅(geeeeeeeeek@github)
 > 
@@ -7,8 +6,8 @@
 
 `git rebase` 这个命令经常被人认为是一种Git巫术，初学者应该避而远之。但如果使用得当的话，它能给你的团队开发省去太多烦恼。在这篇文章中，我们会比较`git rebase` 和类似的`git merge` 命令，找到Git工作流中rebase的所有用法。
 
-概述
----
+## 概述
+
 你要知道的第一件事是，`git rebase` 和`git merge` 做的事其实是一样的。它们都被设计来将一个分支的更改并入另一个分支，只不过方式有些不同。
 
 想象一下，你刚创建了一个专门的分支开发新功能，然后团队中另一个成员在master分支上添加了新的commit。这就会造成提交历史被Fork一份，用Git来协作的开发者应该都很清楚。
@@ -21,18 +20,21 @@
 
 将master分支合并到feature分支最简单的办法就是用下面这些命令：
 
-```
+``` 
 git checkout feature
 git merge master
 ```
+
 或者。你也可以把它们压缩在一行里。
-```
+
+``` 
 git merge master feature
 ```
 
 feature分支中新的 “merge commit” 将两个分支中的历史连在了一起。你会得到下面这样的分支结构：
 
 ![enter image description here](https://www.atlassian.com/git/images/tutorials/advanced/merging-vs-rebasing/02.svg)
+
 
 
 Merge之所以好，因为它是一个安全的操作。现有的分支不会被更改。这就避免后rebase潜在的缺点（后面会说）。
@@ -43,7 +45,7 @@ Merge之所以好，因为它是一个安全的操作。现有的分支不会被
 
 作为merge的替代选择，你可以像下面这样将feature分支并入master分支：
 
-```
+``` 
 git checkout feature
 git rebase master
 ```
@@ -62,14 +64,14 @@ rebase最大的好处是你的项目历史会非常整洁。首先，它不像`g
 
 把`-i` 传入`git rebase` 选项来开始一个交互式的rebase过程：
 
-```
+``` 
 git checkout feature
 git rebase -i master
 ```
 
 它会打开一个文本编辑器，显示所有将被移动的commit：
 
-```
+``` 
 pick 33d5b7a Message for commit #1
 pick 9480b3d Message for commit #2
 pick 5c67e61 Message for commit #3
@@ -77,7 +79,7 @@ pick 5c67e61 Message for commit #3
 
 这个列表定义了rebase将被执行后分支会是什么样的。更改`pick` 命令或者重新排序，这个分支的历史就能如你所愿了。比如说，如果第二个commit修复了第一个commit中的小问题，你可以用`fixup` 命令把它们压缩到一行：
 
-```
+``` 
 pick 33d5b7a Message for commit #1
 fixup 9480b3d Message for commit #2
 pick 5c67e61 Message for commit #3
@@ -89,8 +91,7 @@ pick 5c67e61 Message for commit #3
 
 忽略不重要的commit会让你的feature分支的历史更清晰易读。这是`git merge` 做不到的。
 
-Rebase的黄金法则
----
+## Rebase的黄金法则
 
 当你理解rebase是什么的时候，最重要的事情就是什么时候不能用rebase。`git rebase` 的黄金法则便是，绝不要在公共的分支上使用它。
 
@@ -105,9 +106,10 @@ Rebase的黄金法则
 所以，在你运行`git rebase` 之前，一定要问问你自己“有没有别人正在这个分支上工作？”。如果答案是有，那么把你的爪子放回去，重新找到一个无害的方式（如`git revert`）来提交你的更改。不如，你可以随心所欲地重写历史。
 
 ### 强制push
+
 如果你想把rebase之后的master分支push到远程仓库中去的话，Git会阻止你这么做，因为两个分支有冲突。但你可以传入`--force` 标记来强行push。就像下面一样：
 
-```
+``` 
 # Be very careful with this command!
 git push --force
 ```
@@ -117,13 +119,12 @@ git push --force
 仅有的几个强制push的使用场景之一是，当你在想向远程仓库push了一个私有分支之后，执行了一个本地的清理（比如说为了回滚）。这就像是在说“哦，其实我并不想push之前那个feature分支的。用我现在的版本替换掉吧。”。同样的，你要注意没有人正在这个feature分支上工作。
 
 
-工作流
----
+
+## 工作流
 
 你的团队或多或少都可以在现在Git工作流中使用rebase。在这一节中，我们来看看在feature分支开发的各个阶段中，rebase有哪些好处。
 
 第一步是在任何和`git rebase` 有关的工作流中为每一个feature专门创建一个分支。它会给你带来安全使用rebase的分支结构：
-The first step in any workflow that leverages git rebase is to create a dedicated branch for each feature. This gives you the necessary branch structure to safely utilize rebasing:
 
 ![enter image description here](https://www.atlassian.com/git/images/tutorials/advanced/merging-vs-rebasing/06.svg)
 
@@ -133,7 +134,7 @@ The first step in any workflow that leverages git rebase is to create a dedicate
 
 调用`git rebase` 的时候，你有两个base可以选择：上游分支（比如master）或者你feature分支中早先的一个commit。我们在“交互式rebase”一节看到了第一种的例子。后一种在当你只需要修改最新几次commit的时候也很有用。比如说，下面的命令对最新的3次commit进行了交互式rebase：
 
-```
+``` 
 git checkout feature
 git rebase -i HEAD~3
 ```
@@ -144,7 +145,7 @@ git rebase -i HEAD~3
 
 如果你想用这个方法重写整个feature分支，`git merge-base` 命令非常方便地找出feature分支最开始的base。下面这段命令返回原base commit的ID，你可以接下来将它传给`git rebase`：
 
-```
+``` 
 git merge-base feature master
 ```
 
@@ -153,6 +154,7 @@ git merge-base feature master
 但同样的，这只能用在私有分支上。如果你在同一个feature分支和其他开发者合作的话，这个分支是公开的，你不能重写这个历史。
 
 用带有交互式的rebase清理本地commit这个用法，你无法用`git merge` 命令来完成。
+
 
 
 ### 将上游分支上的更改并入feature分支
@@ -174,6 +176,7 @@ git merge-base feature master
 注意，这里的rebase没有违反Rebase黄金法则，因为只有你的本地分支上的commit被移动了，之前的所有东西都没有变。这就像是在说“把我的改动加到John已经做的后面去”。在大多数情况下，这比通过merge commit来同步远程分支来的更符合直觉。
 
 默认情况下，`git pull` 命令会执行一次merge，但你可以传入`--rebase` 来强制它通过rebase来整合远程分支。
+
 By default, the git pull command performs a merge, but you can force it to integrate the remote branch with a rebase by passing it the --rebase option.
 
 ### 用Pull Request进行审查
@@ -195,7 +198,8 @@ By default, the git pull command performs a merge, but you can force it to integ
 如果你还没有完全熟悉`git rebase`，你还可以在一个临时分支中执行rebase。这样的话，如果你意外地弄乱了你feature分支的历史，你还可以查看原来的分支然后重试。
 
 比如说：
-```
+
+``` 
 git checkout feature
 git checkout -b temporary-branch
 git rebase -i master
@@ -204,8 +208,7 @@ git checkout master
 git merge temporary-branch
 ```
 
-总结
-----
+## 总结
 
 你使用rebase之前需要知道的知识点都在这了。如果你想要一个干净的、线性的提交历史，没有不必要的merge commit，你应该使用`git rebase` 而不是`git merge` 来并入其他分支上的更改。
 
