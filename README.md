@@ -2,7 +2,7 @@
 
 高质量的Git中文教程，来自国外社区的优秀文章和个人实践
 
-## [目录]((https://github.com/geeeeeeeeek/git-recipes/wiki/)
+## [目录](https://github.com/geeeeeeeeek/git-recipes/wiki/)
 
 git-recipes的所有文章都以Wiki的方式呈现，请移步[项目Wiki](https://github.com/geeeeeeeeek/git-recipes/wiki/)查看目录和详细内容。
 
