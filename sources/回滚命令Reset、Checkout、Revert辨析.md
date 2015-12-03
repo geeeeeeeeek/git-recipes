@@ -124,7 +124,7 @@ git checkout HEAD~2 foo.py
 
 如果你stage并且commit了checkout的文件，它具备将某个文件回撤到之前版本的效果。注意它撤销了这个文件后面所有的更改，而`git revert` 命令只撤销某个特定commit的更改。
 
-和`gie reset` 一样，这个命令通常和HEAD一起使用。比如`git checkout HEAD foo.py` 的作用等同于舍弃foo.py没有stage的更改。这个行为和`git reset HEAD --hard` 很像，但只影响特定文件。
+和`git reset` 一样，这个命令通常和HEAD一起使用。比如`git checkout HEAD foo.py` 的作用等同于舍弃foo.py没有stage的更改。这个行为和`git reset HEAD --hard` 很像，但只影响特定文件。
 
 ## 总结
 
