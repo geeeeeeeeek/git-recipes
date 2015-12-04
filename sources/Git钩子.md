@@ -1,9 +1,8 @@
-Git钩子
-===
+# Git钩子
 
-> BY 童仲毅(geeeeeeeeek@github)
+> BY 童仲毅([geeeeeeeeek@github](https://github.com/geeeeeeeeek/git-recipes/))
 > 
-> 这是一篇在[原文](https://www.atlassian.com/git/tutorials/git-hooks)基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名([CC BY 2.5 AU](http://creativecommons.org/licenses/by/2.5/au/deed.zh))协议共享。
+> 这是一篇在[原文(BY atlassian)](https://www.atlassian.com/git/tutorials/git-hooks)基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名([CC BY 2.5 AU](http://creativecommons.org/licenses/by/2.5/au/deed.zh))协议共享。
 
 Git钩子是在Git仓库中特定事件发生时自动运行的脚本。它可以让你自定义Git内部的行为，在开始周期中的关键点触发自定义的行为。
 
@@ -13,8 +12,7 @@ Git钩子最常见的使用场景包括了推行提交规范，根据仓库状�
 
 在这篇文章中，我们会先简要介绍Git钩子是如何工作的。然后，我们会审视一些本地和远端仓库使用最流行的钩子。
 
-概述
-===
+# 概述
 
 所有Git钩子都是仓库中特定事件发生时Git自动运行的普通脚本。因此，Git钩子安装和配置也非常容易。
 
@@ -24,7 +22,7 @@ Git钩子最常见的使用场景包括了推行提交规范，根据仓库状�
 
 钩子存在于每个Git仓库的`.git/hooks` 目录中。当你初始化仓库时，Git自动生成这个目录和一些示例脚本。当你观察`.git/hooks` 时，你会看到下面这些文件：
 
-```
+``` 
 applypatch-msg.sample       pre-push.sample
 commit-msg.sample           pre-rebase.sample
 post-update.sample          prepare-commit-msg.sample
@@ -36,15 +34,15 @@ pre-commit.sample
 
 比如说，试试安装一个`prepare-commit-msg` 钩子。去掉脚本的`.sample` 拓展名，在文件中加上下面这两行：
 
-```
+``` 
 #!/bin/sh
- 
+
 echo "# Please include a useful commit message!" > $1
 ```
 
 钩子需要能被执行，所以如果你创建了一个新的脚本文件，你需要修改它的文件权限。比如说，为了确保`prepare-commit-msg` 可执行，运行下面这个命令：
 
-```
+``` 
 chmod +x prepare-commit-msg
 ```
 
@@ -57,9 +55,10 @@ chmod +x prepare-commit-msg
 内置的脚本大多是shell和PERL语言的，但你可以使用任何脚本语言，只要它们最后能编译到可执行文件。每次脚本中的`#!/bin/sh` 定义了你的文件将被如何解释。比如，使用其他语言时你只需要将path改为你的解释器的路径。
 
 
+
 比如说，你可以在`prepare-commit-msg` 中写一个可执行的Python脚本。下面这个钩子和上一节的shell脚本做的事完全一样。
 
-```
+``` 
 #!/usr/bin/env python
 
 import sys, os
@@ -89,19 +88,18 @@ with open(commit_msg_filepath, 'w') as f:
 
 也就是说，用服务端钩子来拒绝没有遵守规范的提交是完全可行的。后面我们会再讨论这个问题。
 
-本地钩子
----
+## 本地钩子
 
 本地钩子只影响它们所在的仓库。当你在读这一节的时候，记住开发者可以修改他们本地的钩子，所以不要用它们来推行强制的提交规范。不过，它们确实可以让开发者更易于接受这些规范。
 
 在这一节中，我们会探讨6个最有用的本地钩子：
 
- - pre-commit
- - prepare-commit-msg
- - commit-msg
- - post-commit
- - post-checkout
- - pre-rebase
+- pre-commit
+- prepare-commit-msg
+- commit-msg
+- post-commit
+- post-checkout
+- pre-rebase
 
 前4个钩子让你介入完整的提交生命周期，后2个允许你执行一些额外的操作，分别为`git checkout` 和`git rebase` 的安全检查。
 
@@ -115,7 +113,7 @@ with open(commit_msg_filepath, 'w') as f:
 
 `pre-commit` 不需要任何参数，以非0状态退出时将放弃整个提交。让我们看一个简化了的（和更详细的）内置`pre-commit` 钩子。只要检测到不一致时脚本就放弃这个提交，就像`git diff-index` 命令定义的那样（只要词尾有空白字符、只有空白字符的行、行首一个tab后紧接一个空格就被认为错误）。
 
-```
+``` 
 #!/bin/sh
 
 # Check if this is the initial commit
@@ -147,20 +145,22 @@ fi
 这只是`pre-commit` 的其中一个例子。它恰好使用了已有的Git命令来根据提交带来的更改进行测试，但你可以在`pre-commit` 中做任何你想做的事，比如执行其它脚本、运行第三方测试集、用Lint检查代码风格。
 
 
+
 ### prepare-commit-msg
+
 `prepare-commit-msg` 钩子在`pre-commit` 钩子在文本编辑器中生成提交信息之后被调用。这被用来方便地修改自动生成的squash或merge提交。
 
 `prepare-commit-msg` 脚本的参数可以是下列三个：
 
- - 包含提交信息的文件名。你可以在原地更改提交信息。
- - 提交类型。可以是信息（`-m` 或 `-F` 选项），模板（`-t` 选项），merge（如果是个merge提交）或squash（如果这个提交插入了其他提交）。
- - 相关提交的SHA1哈希值。只有当`-c`, `-C`, or `--amend` 选项出现时才会出现。
+- 包含提交信息的文件名。你可以在原地更改提交信息。
+- 提交类型。可以是信息（`-m` 或 `-F` 选项），模板（`-t` 选项），merge（如果是个merge提交）或squash（如果这个提交插入了其他提交）。
+- 相关提交的SHA1哈希值。只有当`-c`, `-C`, or `--amend` 选项出现时才会出现。
 
 和`pre-commit` 一样，以非0状态退出会放弃提交。
 
 我们已经看过一个修改提交信息的简单例子，现在我们来看一个更有用的脚本。使用issue跟踪器时，我们通常在单独的分支上处理issue。如果你在分支名中包含了issue编号，你可以使用`prepare-commit-msg` 钩子来自动地将它包括在那个分支的每个提交信息中。
 
-```
+``` 
 #!/usr/bin/env python
 
 import sys, os, re
@@ -197,7 +197,7 @@ if branch.startswith('issue-'):
 
 首先，上面的`prepare-commit-msg` 钩子告诉你如何收集传入脚本的所有参数。接下来，它调用了`git symbolic-ref --short HEAD` 来获取对应HEAD的分支名。如果分支名以`issue-` 开头，它会重写提交信息文件，在第一行加上issue编号。比如你的分支名`issue-224` ，下面的提交信息将会生成：
 
-```
+``` 
 ISSUE-224 
 
 # Please enter the commit message for your changes. Lines starting 
@@ -219,7 +219,7 @@ ISSUE-224
 
 比如说，下面这个脚本确认用户没有删除`prepare-commit-msg` 脚本自动生成的`ISSUE-[#]` 字符串。
 
-```
+``` 
 #!/usr/bin/env python
 
 import sys, os, re
@@ -256,7 +256,7 @@ if branch.startswith('issue-'):
 
 比如说，如果你需要每次提交快照时向老板发封邮件（也许对于大多数工作流来事不是个好的想法），你可以加上下面这个`post-commit` 钩子。
 
-```
+``` 
 #!/usr/bin/env python
 
 import smtplib
@@ -289,20 +289,21 @@ session.quit()
 
 你虽然可以用`post-commit` 来触发本地的持续集成系统，但大多数时候你想用的是`post-receive` 这个钩子。它运行在服务端而不是用户的本地机器，它同样在任何开发者推送代码时运行。那里更适合你进行持续集成。
 
-###  post-checkout
+### post-checkout
+
 
 
 `post-checkout` 钩子和`post-commit` 钩子很像，但它是在你用`git checkout` 查看引用的时候被调用的。这是用来清理你的工作目录中可能会令人困惑的生成文件。This is nice for clearing out your working directory of generated files that would otherwise cause confusion.
 
 这个钩子接受三个参数，它的返回状态不影响`git checkout` 命令。
 
- - HEAD前一次提交的引用
- - 新的HEAD的引用
- - 1或0，分别代表是分支checkout还是文件checkout。
+- HEAD前一次提交的引用
+- 新的HEAD的引用
+- 1或0，分别代表是分支checkout还是文件checkout。
 
 Python程序员经常遇到的问题是切换分支后那些之前生成的`.pyc` 文件。解释器有时使用`.pyc` 而不是`.py` 文件。为了避免歧义，你可以在每次用`post-checkout` 切换到新的分支的时候，删除所有`.pyc` 文件。
 
-```
+``` 
 #!/usr/bin/env python
 
 import sys, os, re
@@ -337,7 +338,7 @@ for root, dirs, files in os.walk('.'):
 
 比如说，如果你想彻底禁用rebase操作，你可以使用下面的`pre-rebase` 脚本：
 
-```
+``` 
 #!/bin/sh
 
 # Disallow all rebasing
@@ -347,23 +348,22 @@ exit 1
 
 每次运行`git rebase` ，你都会看到下面的信息：
 
-```
+``` 
 pre-rebase: Rebasing is dangerous. Don't do it.
 The pre-rebase hook refused to rebase.
 ```
 
 内置的`pre-rebase.sample` 脚本是一个更复杂的例子。它在什么时候阻止rebase这方面更加智能。它会检查你当前的分支是否已经合并到了下一个分支中去（也就是主分支）。如果是的话，rebase可能会遇到问题，脚本会放弃这次rebase。
 
-服务端钩子
-===
+# 服务端钩子
 
 服务端钩子和本地钩子几乎一样，只不过它们存在于服务端的仓库中（比如说中心仓库，或者开发者的公共仓库）。当和官方仓库连接时，其中一些可以用来拒绝一些不符合规范的提交。
 
 这节中我们要讨论下面三个服务端钩子：
 
- - pre-receive
- - update
- - post-receive
+- pre-receive
+- update
+- post-receive
 
 这些钩子都允许你对`git push` 的不同阶段做出响应。
 
@@ -377,13 +377,13 @@ The pre-rebase hook refused to rebase.
 
 这个脚本没有参数，但每一个推送上来的引用都会以下面的格式传入脚本的单独一行：
 
-```
+``` 
 <old-value> <new-value> <ref-name>
 ```
 
 你可以看到这个钩子做了非常简单的事，就是读取推送上来的引用并且把它们打印出来。
 
-```
+``` 
 #!/usr/bin/env python
 
 import sys
@@ -399,28 +399,28 @@ for line in fileinput.input():
 
 这和其它钩子相比略微有些不同，因为信息是通过标准输入而不是命令行传入的。在远端仓库的`.git/hooks` 中加上这个脚本，推送到master分支，你会看到下面这些信息打印出来：
 
-```
+``` 
 b6b36c697eb2d24302f89aa22d9170dfe609855b 85baa88c22b52ddd24d71f05db31f4e46d579095 refs/heads/master
 ```
 
 你可以用SHA1哈希值，或者底层的Git命令，来检查将要引入的更改。一些常见的使用包括：
 
- - 拒绝将上游分支rebase的更改
- - 防止错综复杂的合并（非快速向前，会造成项目历史非线性）
- - 检查用户是否有正确的权限来做这些更改（大多用于中心化的Git工作流中）
- - 如果多个引用被推送，在`pre-receive` 中返回非0状态，拒绝所有提交。如果你想一个个接受或拒绝分支，你需要使用`update` 钩子
+- 拒绝将上游分支rebase的更改
+- 防止错综复杂的合并（非快速向前，会造成项目历史非线性）
+- 检查用户是否有正确的权限来做这些更改（大多用于中心化的Git工作流中）
+- 如果多个引用被推送，在`pre-receive` 中返回非0状态，拒绝所有提交。如果你想一个个接受或拒绝分支，你需要使用`update` 钩子
 
 ### update
 
 `update` 钩子在`pre-receive` 之后被调用，用法也差不多。它也是在实际更新前被调用的，但它可以分别被每个推送上来的引用分别调用。也就是说如果用户尝试推送到4个分支，`update` 会被执行4次。和`pre-receive` 不一样，这个钩子不需要读取标准输入。事实上，它接受三个参数：
 
- - 更新的引用名称
- - 引用中存放的旧的对象名称
- - 引用中存放的新的对象名称
+- 更新的引用名称
+- 引用中存放的旧的对象名称
+- 引用中存放的新的对象名称
 
 这些信息和`pre-receive` 相同，但因为每次引用都会分别触发更新，你可以拒绝一些引用而接受另一些。
 
-```
+``` 
 #!/usr/bin/env python
 
 import sys
@@ -443,8 +443,7 @@ print "Moving '%s' from %s to %s" % (branch, old_commit, new_commit)
 
 这个脚本没有参数，但和`pre-receive` 一样通过标准输入读取。
 
-总结
----
+## 总结
 
 在这篇文章中，我们学习了如果用Git钩子来修改内部行为，当仓库中特定的事件发生时接受消息。钩子是存在于`git/hooks` 仓库中的普通脚本，因此也非常容易安装和定制。
 

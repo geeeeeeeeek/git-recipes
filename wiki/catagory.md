@@ -7,7 +7,7 @@
 - **第1章** [快速指南](https://github.com/geeeeeeeeek/git-recipes/wiki/2.1-%E5%BF%AB%E9%80%9F%E6%8C%87%E5%8D%97)
 - **第2章** [创建代码仓库](https://github.com/geeeeeeeeek/git-recipes/wiki/2.2-%E5%88%9B%E5%BB%BA%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93)
 - **第3章** [保存你的更改](https://github.com/geeeeeeeeek/git-recipes/wiki/2.3-%E4%BF%9D%E5%AD%98%E4%BD%A0%E7%9A%84%E6%9B%B4%E6%94%B9)
-- **第4章** [查看仓库状态](https://github.com/geeeeeeeeek/git-recipes/wiki/2.4-%E6%A3%80%E6%9F%A5%E4%BB%93%E5%BA%93%E7%8A%B6%E6%80%81)
+- **第4章** [检查仓库状态](https://github.com/geeeeeeeeek/git-recipes/wiki/2.4-%E6%A3%80%E6%9F%A5%E4%BB%93%E5%BA%93%E7%8A%B6%E6%80%81)
 - **第5章** [检出之前的提交](https://github.com/geeeeeeeeek/git-recipes/wiki/2.5-%E6%A3%80%E5%87%BA%E4%B9%8B%E5%89%8D%E7%9A%84%E6%8F%90%E4%BA%A4) 
 - **第6章** 回滚错误的更改  **第7章** 重写项目历史
 

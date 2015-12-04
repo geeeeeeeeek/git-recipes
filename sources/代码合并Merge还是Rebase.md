@@ -1,8 +1,8 @@
 # 代码合并：Merge还是Rebase
 
-> BY 童仲毅(geeeeeeeeek@github)
+> BY 童仲毅([geeeeeeeeek@github](https://github.com/geeeeeeeeek/git-recipes/))
 > 
-> 这是一篇在[原文](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名([CC BY 2.5 AU](http://creativecommons.org/licenses/by/2.5/au/deed.zh))协议共享。
+> 这是一篇在[原文(BY atlassian)](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名([CC BY 2.5 AU](http://creativecommons.org/licenses/by/2.5/au/deed.zh))协议共享。
 
 `git rebase` 这个命令经常被人认为是一种Git巫术，初学者应该避而远之。但如果使用得当的话，它能给你的团队开发省去太多烦恼。在这篇文章中，我们会比较`git rebase` 和类似的`git merge` 命令，找到Git工作流中rebase的所有用法。
 
