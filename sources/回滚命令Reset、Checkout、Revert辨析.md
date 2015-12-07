@@ -1,4 +1,4 @@
-# Reset、Checkout和Revert
+# 代码回滚：Reset、Checkout、Revert的选择
 
 > BY 童仲毅([geeeeeeeeek@github](https://github.com/geeeeeeeeek/git-recipes/))
 > 
@@ -140,8 +140,6 @@ git checkout HEAD~2 foo.py
 | git checkout | 文件层面 | 舍弃工作目录中的更改        |
 |  git revert  | 提交层面 | 在公共分支上回滚更改        |
 |  git revert  | 文件层面 | （然而并没有）           |
-
-
 
 > 这篇文章是[**『git-recipes』**](https://github.com/geeeeeeeeek/git-recipes/)的一部分，点击[**目录**](https://github.com/geeeeeeeeek/git-recipes/wiki/)查看所有章节。
 > 

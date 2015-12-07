@@ -1,4 +1,4 @@
-# Git钩子
+# Git钩子：自定义你的工作流
 
 > BY 童仲毅([geeeeeeeeek@github](https://github.com/geeeeeeeeek/git-recipes/))
 > 
@@ -456,4 +456,3 @@ print "Moving '%s' from %s to %s" % (branch, old_commit, new_commit)
 > 如果你觉得文章对你有帮助，欢迎点击右上角的***Star***:star2:或***Fork***:fork_and_knife:。
 > 
 > 如果你发现了错误，或是想要加入协作，请参阅[Wiki协作说明](https://github.com/geeeeeeeeek/git-recipes/issues/1)。
-

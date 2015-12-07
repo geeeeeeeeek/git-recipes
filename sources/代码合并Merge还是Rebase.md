@@ -1,4 +1,4 @@
-# 代码合并：Merge还是Rebase
+# 代码合并：Merge、Rebase的选择
 
 > BY 童仲毅([geeeeeeeeek@github](https://github.com/geeeeeeeeek/git-recipes/))
 > 
@@ -217,4 +217,3 @@ git merge temporary-branch
 > 如果你觉得文章对你有帮助，欢迎点击右上角的***Star***:star2:或***Fork***:fork_and_knife:。
 > 
 > 如果你发现了错误，或是想要加入协作，请参阅[Wiki协作说明](https://github.com/geeeeeeeeek/git-recipes/issues/1)。
-
