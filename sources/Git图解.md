@@ -144,3 +144,12 @@ rebase是合并命令的另一种选择。合并把两个父分支合并进行�
 ![enter image description here](http://marklodato.github.io/visual-git-guide/rebase-onto.svg)
 
 同样有`git rebase --interactive`让你更方便的完成一些复杂操作，比如丢弃、重排、修改、合并提交。
+
+
+
+> 这篇文章是[**『git-recipes』**](https://github.com/geeeeeeeeek/git-recipes/)的一部分，点击[**目录**](https://github.com/geeeeeeeeek/git-recipes/wiki/)查看所有章节。
+> 
+> 如果你觉得文章对你有帮助，欢迎点击右上角的***Star***:star2:或***Fork***:fork_and_knife:。
+> 
+> 如果你发现了错误，或是想要加入协作，请参阅[Wiki协作说明](https://github.com/geeeeeeeeek/git-recipes/issues/1)。
+
