@@ -4,13 +4,13 @@
 > 
 > 这是一篇在[原文(BY atlassian)](https://www.atlassian.com/git/tutorials/refs-and-the-reflog)基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名([CC BY 2.5 AU](http://creativecommons.org/licenses/by/2.5/au/deed.zh))协议共享。
 
-提交(commit)是Git的精髓所在，你无时不刻不在创建和缓存提交、查看以前的提交，或者用各种Git命令在仓库间转移你的提交。大多数的命令都对同一个提交操作，而有些会接受提交的引用作为参数。比如，你可以给`git checkout` 传入一个引用来查看以前的提交，或者传入一个分支名来切换到对于的分支。
+提交是Git的精髓所在，你无时不刻不在创建和缓存提交、查看以前的提交，或者用各种Git命令在仓库间转移你的提交。大多数的命令都对同一个提交操作，而有些会接受提交的引用作为参数。比如，你可以给`git checkout`传入一个引用来查看以前的提交，或者传入一个分支名来切换到对应的分支。
 
 ![引用一次提交的各种方式](https://www.atlassian.com/git/images/tutorials/advanced/refs-and-the-reflog/01.svg)
 
 知道提交的各种引用方式之后，Git的命令就会变得更加强大。在这章中，我们研究提交的各种引用方式，来一窥`git checkout`、`git branch`、`git push`等命令的工作原理。
 
-我们还会学到如何使用Git的引用日志查看看似已经删除的提交。
+我们还会学到如何使用Git的引用日志查看似乎已被删除的提交。
 
 ## 哈希字串
 
@@ -21,7 +21,7 @@ commit 0c708fdec272bc4446c6cabea4f0022c2b616eba
 Author: Mary Johnson <mary@example.com>
 Date:   Wed Jul 9 16:37:42 2014 -0500
 
-    Some commit message
+    一些提交信息
 ```
 
 在Git命令中传递时，你只需要提供足以确定那个提交的哈希子串即可。比如，你可以这样用`git show`的命令显示上面的提交：
@@ -42,7 +42,7 @@ git rev-parse master
 
 ref是提交的间接引用。你可以把它当做哈希字串的别名，但对用户更友好。这就是Git内部表示分支和标签的机制。
 
-引用以一段普通的文本存在于`.git/refs`目录中，就是我们平时说的那个`.git`。你要去`.git/refs`文件夹查看仓库中的引用。你可以看到下面这样的结构，但具体的文件取决于你的仓库中有什么分支和标签，以及你的远程仓库。
+引用以一段普通的文本存在于`.git/refs`目录中，就是我们平时说的那个`.git`。你去`.git/refs`文件夹查看仓库中的引用。你可以看到下面这样的结构，但具体的文件取决于你的仓库中有什么分支和标签，以及你的远程仓库。
 
 ``` 
 .git/refs/
@@ -59,13 +59,11 @@ ref是提交的间接引用。你可以把它当做哈希字串的别名，但�
 `heads`目录定义了你本地仓库中的所有分支。每一个文件名和你的分支名一一对应，文件中包含一个提交的哈希字串。这个就是分支顶端的所在位置。为了验证这一点，试试在Git根目录运行下面这两个命令：
 
 ``` 
-
-# Output the contents of `refs/heads/master` file:
+# 输出`refs/heads/master`文件内容
 cat .git/refs/heads/master
 
-# Inspect the commit at the tip of the `master` branch:
+# 查看`master`分支尾端的提交
 git log -1 master
-
 ```
 
 `cat`命令返回的哈希字串和`git log`命令显示的哈希字串应该是一致的。
@@ -120,7 +118,7 @@ bb883e4c91c870b5fed88fd36696e752fb6cf8e6 refs/tags/v0.9
 - MERGE_HEAD – 你通过`git merge`并入当前分支的引用(们)。
 - CHERRY_PICK_HEAD – 你`cherry pick`使用的引用。
 
-这些引用s由Git在需要时创建和更新。比如说，`git pull`命令首先运行`git fetch`，而`FETCH_HEAD `引用随之改变。然后，它运行`git merge FETCH_HEAD`来将fetch到的分支最终并入仓库。当然，你也可以使用其他任何引用，因为我相信你已经对`HEAD`很熟悉了。
+这些引用由Git在需要时创建和更新。比如说，`git pull`命令首先运行`git fetch`，而`FETCH_HEAD`引用随之改变。然后，运行`git merge FETCH_HEAD`来将fetch到的分支最终并入仓库。当然，你也可以使用其他任何引用，因为我相信你已经对`HEAD`很熟悉了。
 
 这些文件包含的内容取决于它们的类型和你的仓库状态。`HEAD` 引用可以包含符号链接（指向另一个引用而不是哈希字串），或是提交的哈希字串。比如说，看看当你在master分支上时`HEAD`的内容：
 
@@ -139,31 +137,27 @@ cat .git/HEAD
 
 refspec将本地分支和远程分支对应起来。我们可以通过它用本地的Git命令管理远程分支，设置一些高级的`git push`和`git fetch`行为。
 
-
-
 refspec的定义是这样的：`[+]<src>:<dst>`。`<src>`参数是本地的源分支，`<dst>`是远程的目标分支。可选的`+`号强制远程仓库采用非快速向前的更新策略。
 
-refspec可以和`git push`一起使用，用来指定远程的分支的名称。比如，下面这个命令将master分支push到远程origin，就像一般的`git push`一样，但它使用qa-master作为远程仓库中的分支名。对于QA团队来说，这个方法非常有用。
+refspec可以和`git push`一起使用，用来指定远程的分支的名称。比如，下面这个命令将master分支推送到远程origin，就像一般的`git push`一样，但它使用qa-master作为远程仓库中的分支名。对于QA团队来说，这个方法非常有用。
 
 ``` 
 git push origin master:refs/heads/qa-master
 ```
 
-你也可以用refspec来删除远程分支。feature分支的工作流经常会遇到这种情况，将feature分支push到远程仓库中（比如说为了备份）。你删除本地的feature分支之后，远程的feature分支依然存在，虽然现在我们已经不再需要它。你可以push一个`<src>`参数为空的refspec来删除它们，就像这样：
+你也可以用refspec来删除远程分支。feature分支的工作流经常会遇到这种情况，将feature分支推送到远程仓库中（比如说为了备份）。你删除本地的feature分支之后，远程的feature分支依然存在，虽然现在我们已经不再需要它。你可以push一个`<src>`参数为空的refspec来删除它们，就像这样：
 
 ``` 
-git push origin :some-feature
+git push origin:some-feature
 ```
 
-这非常方便，因为你不需要登陆到你的远程仓库然后手动删除这些远程分支。注意，在Git v1.7.0之后你可以用`--delete`标记代替上面这个方法。下面这个命令和上面的命令作用相同：
-
-
+这非常方便，因为你不需要登录到你的远程仓库然后手动删除这些远程分支。注意，在Git v1.7.0之后你可以用`--delete`标记代替上面这个方法。下面这个命令和上面的命令作用相同：
 
 ``` 
 git push origin --delete some-feature
 ```
 
-在Git配置文件中增加几行，你就可以更改`git fetch`的行为。默认地，`git fetch`会fetch远程仓库中所有分支。原因就是因为`.git/config`文件的这段配置：
+在Git配置文件中增加几行，你就可以更改`git fetch`的行为。默认地，`git fetch`会fetch远程仓库中所有分支。原因就是`.git/config`文件的这段配置：
 
 ``` 
 [remote "origin"]
@@ -179,7 +173,7 @@ fetch这一行告诉`git fetch`从origin仓库中下载所有分支。但是，�
     fetch = +refs/heads/master:refs/remotes/origin/master
 ```
 
-你还可以类似地修改`git push`的配置。比如，如果你总是将master分支push到origin仓库的qa-master分支（就像我们之前做的一样），你要把配置文件改成这样：
+你还可以类似地修改`git push`的配置。比如，如果你总是将master分支推送到origin仓库的qa-master分支（就像我们之前做的一样），你要把配置文件改成这样：
 
 ``` 
 [remote "origin"]
@@ -198,7 +192,7 @@ refspec给了你完全的掌控权，可以定制Git命令如何在仓库之间�
 git show HEAD~2
 ```
 
-但是，对于合并提交(merge commit)的时候，事情就会变得有些复杂。因为合并提交有多个父节点，所以你可以找到多条回溯的路径。对于3路合并，第一个父节点是你执行merge时的分支，第二个父节点是你传给`git merge`命令的分支。
+但是，面对合并提交(merge commit)的时候，事情就会变得有些复杂。因为合并提交有多个父节点，所以你可以找到多条回溯的路径。对于3路合并，第一个父节点是你执行合并时的分支，第二个父节点是你传给`git merge`命令的分支。
 
 `~`符号总是选择合并提交的第一个父节点。如果你想选择其他父节点，你需要用`^`符号来指定。比如说，`HEAD`是一个合并提交，下面这个命令返回`HEAD`的第二个父节点：
 
@@ -218,16 +212,14 @@ git show HEAD^2^1
 
 相对引用在命令中的用法和普通的引用相同。比如，下面所有命令中使用的都是相对引用：
 
-
-
 ``` 
-# Only list commits that are parent of the second parent of a merge commit
+# 只列出合并提交的第二个父节点的父节点
 git log HEAD^2
 
-# Remove the last 3 commits from the current branch
+# 移除当前分支最新的3个提交
 git reset HEAD~3
 
-# Interactively rebase the last 3 commits on the current branch
+# 交互式rebase当前分支最新的3个提交
 git rebase -i HEAD~3
 ```
 
@@ -237,9 +229,9 @@ git rebase -i HEAD~3
 
 ``` 
 400e4b7 HEAD@{0}: checkout: moving from master to HEAD~2
-0e25143 HEAD@{1}: commit (amend): Integrate some awesome feature into `master`
-00f5425 HEAD@{2}: commit (merge): Merge branch ';feature';
-ad8621a HEAD@{3}: commit: Finish the feature
+0e25143 HEAD@{1}: commit (amend): 将一些很赞的新特性引入`master`
+00f5425 HEAD@{2}: commit (merge): 合并'feature'分支
+ad8621a HEAD@{3}: commit: 结束feature分支开发
 ```
 
 说人话就是：
@@ -249,15 +241,15 @@ ad8621a HEAD@{3}: commit: Finish the feature
 - 你刚刚把feature分支合并到了master分支
 - 你刚刚提交了一份缓存
 
-`HEAD{<n>}`语法允许你引用保存在日志中的提交。这和上一节的`HEAD~<n>`引用差不多，不过`<n> `指的是引用日志中的对象，而不是提交历史。
+`HEAD{<n>}`语法允许你引用保存在日志中的提交。这和上一节的`HEAD~<n>`引用差不多，不过`<n>`指的是引用日志中的对象，而不是提交历史。
 
 你可以用办法回到之前可能已经丢失的状态。比如，你刚刚用`git reset`方法粉碎了新的feature分支。你的引用日志看上去可能会是这样的：
 
 ``` 
 ad8621a HEAD@{0}: reset: moving to HEAD~3
-298eb9f HEAD@{1}: commit: Some other commit message
-bbe9012 HEAD@{2}: commit: Continue the feature
-9cb79fa HEAD@{3}: commit: Start a new feature
+298eb9f HEAD@{1}: commit: 一些提交信息
+bbe9012 HEAD@{2}: commit: 继续开发
+9cb79fa HEAD@{3}: commit: 开始新特性开发
 ```
 
 `git reset`前的三个提交现在都成了悬挂的了，也就是说除了引用日志之外没有办法再引用到它们。现在，假设你意识到了你不应该丢掉你全部的工作。你只需要切换到`HEAD@{1}`这个提交就能回到你运行`git reset`之前仓库的状态。
@@ -274,7 +266,7 @@ git checkout HEAD@{1}
 
 我们还了解了引用日志，来引用到其他方式已经不存在的提交。这是一种很好的恢复误删提交的方法。
 
-它的意义在于：在任何开发场景下，你都能找到你需要的特定提交。你很容易就可以把这些技巧用在你一有的Git知识中，因为很多常用的命令都接受引用作为参数，包括`git log,`、`git show`、`git checkout`、`git reset`、`git revert`、`git rebase`等等。
+它的意义在于：在任何开发场景下，你都能找到你需要的特定提交。你很容易就可以把这些技巧用在你一有的Git知识中，因为很多常用的命令都接受引用作为参数，包括`git log`、`git show`、`git checkout`、`git reset`、`git revert`、`git rebase`等等。
 
 
 
