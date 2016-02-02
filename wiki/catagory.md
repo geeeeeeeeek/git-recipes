@@ -1,5 +1,3 @@
-**第1篇 Git**
-
 **第2篇 从零搭建本地代码仓库**
 
 这篇完全面向入门者。我假设你从零开始创建一个项目并且想用Git来进行版本控制，我们会讨论如何在你的个人项目中使用Git，比如如何初始化你的项目，如何管理新的或者已有的文件，如何在远端仓库中储存你的代码。
@@ -14,7 +12,11 @@
 
 **第3章 远程团队协作和管理**
 
-- **第1章** 快速指南  **第2章** 同步代码  **第3章** 创建Pull Request  **第4章** 使用分支  **第5章** 几种工作流
+- **第1章** 快速指南 
+- **第2章** [保持同步](https://github.com/geeeeeeeeek/git-recipes/wiki/3.2-%E4%BF%9D%E6%8C%81%E5%90%8C%E6%AD%A5)
+- **第3章** [创建Pull Request](https://github.com/geeeeeeeeek/git-recipes/wiki/3.3-%E5%88%9B%E5%BB%BAPull-Request)
+- **第4章** [使用分支](https://github.com/geeeeeeeeek/git-recipes/wiki/3.4-%E4%BD%BF%E7%94%A8%E5%88%86%E6%94%AF)
+- **第5章** [常见工作流比较](https://github.com/geeeeeeeeek/git-recipes/wiki/3.5-%E5%B8%B8%E8%A7%81%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%AF%94%E8%BE%83)
 
 **第4篇 Git命令详解**
 
