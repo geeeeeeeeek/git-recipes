@@ -2,7 +2,7 @@
 
 > BY houkensjtu([houkensjtu@github](https://github.com/houkensjtu))
 > 
-> 这是一篇在[原文(BY atlassian)](https://www.atlassian.com/git/tutorials/git-log)基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名([CC BY 2.5 AU](http://creativecommons.org/licenses/by/2.5/au/deed.zh))协议共享。
+> 这是一篇在[原文(BY atlassian)](https://www.atlassian.com/git/tutorials/what-is-git)基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名([CC BY 2.5 AU](http://creativecommons.org/licenses/by/2.5/au/deed.zh))协议共享。
 
 Git是目前世界上被最广泛使用的现代软件版本管理系统。Git本身亦是一个成熟并处于活跃开发状态的开源项目，它最初是由Linux操作系统内核的创造者Linus Torvalds在2005年创造。今天惊人数量的软件项目依赖Git进行版本管理，这些项目包括开源以及各种商业软件。Git在职业软件开发者中拥有良好的声誉，Git目前支持绝大多数的操作系统以及IDE(Integrated Development Environments)。
 
