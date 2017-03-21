@@ -12,12 +12,21 @@
 
 - Mac用户：Xcode Command Line Tools自带Git (`xcode-select --install` )
   
-- Linux用户：`sudo apt-get install git`
+- Linux用户
+  
+  - Debian系（如Ubuntu）：`sudo apt-get install git`
+    
+    - 旧版本的Debian系发行版可能需要使用`sudo apt-get install git-core`
+  
+  - ArchLinux：`sudo pacman -S git`
+
+  - 实际上，Git很有可能已经安装在你的系统里了，只是你没有发现。  
+    运行`git --version`，只要输出的结果不是“命令不存在”，Git就已经安装过了。
   
 - Windows用户：下载[Git SCM](git-for-windows.github.io)
   
   ``` 
-  - 对于Windows用户，安装后如果希望在全局的cmd中使用git，需要把git.exe加入PATH环境变量中，或在Git Bash中使用Git。
+  对于Windows用户，安装后如果希望在全局的cmd中使用git，需要把git.exe加入PATH环境变量中，或在Git Bash中使用Git。
   ```
 
 ## 检出仓库
