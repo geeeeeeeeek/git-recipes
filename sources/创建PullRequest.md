@@ -4,7 +4,7 @@
 >
 > 这是一篇在[原文（BY atlassian）](https://www.atlassian.com/git/tutorials/making-a-pull-request)基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（[CC BY 2.5 AU](http://creativecommons.org/licenses/by/2.5/au/deed.zh)）协议共享。
 >
-> 原文以 Bitbucket 为例，考虑到[git-recipes](https://github.com/geeeeeeeeek/git-recipes/)主要面向 GitHub 用户，因此例子替换成了 GitHub。Pull Request 在 GitLab 等平台上也有，用法和本教程基本一致。
+> 原文以 Bitbucket 为例，考虑到[git-recipes](https://github.com/geeeeeeeeek/git-recipes/)主要面向 GitHub 用户，因此栗子替换成了 GitHub。Pull Request 在 GitLab 等平台上也有，用法和本教程基本一致。
 
 Pull Request 是开发者使用 GitHub 进行协作的利器。这个功能为用户提供了友好的页面，让提议的更改在并入官方项目之前，可以得到充分的讨论。
 
@@ -78,11 +78,11 @@ Pull Request 还可以用来和官方项目之外的开发者进行协作。比�
 
 两个开发者可以在 Pull Request 中讨论和开发分支。当功能完成时，其中一位可以发起另一个 Pull Request，请求将功能合并到官方的 master 分支中去。这种灵活性使得 Pull Request 成为了 Fork 工作流中尤为强大的协作工具。
 
-## 例子
+## 栗子
 
-下面的例子演示了如何将 Pull Request 用在 Fork 工作流中。小团队中的开发和向一个开源项目贡献代码都可以这样做。
+下面的🌰演示了如何将 Pull Request 用在 Fork 工作流中。小团队中的开发和向一个开源项目贡献代码都可以这样做。
 
-在这个例子中，Mary 是一位开发者，John 是项目的维护者。他们都有自己公开的 GitHub 仓库，John 的仓库之一便是下面的官方项目。
+在这个栗子中，Mary 是一位开发者，John 是项目的维护者。他们都有自己公开的 GitHub 仓库，John 的仓库之一便是下面的官方项目。
 
 ### Mary fork了官方项目
 
@@ -156,7 +156,7 @@ John 可以在他自己的 GitHub 仓库下的 *Pull Request* 选项卡中看到
 
 如果他认为 feature 分支已经可以合并了，他只需点击 *Merge Pull Request* 按钮来通过这个 Pull Request，将 Mary 的  feature分支并入他的 `master` 分支。
 
-但是，在这里例子中，假设 John 发现了 Mary 代码中的一个小 bug，需要她在合并前修复。他可以评论整个 Pull Request，也可以评论 feature 分支中某个特定的提交。
+但是，在这里栗子中，假设 John 发现了 Mary 代码中的一个小 bug，需要她在合并前修复。他可以评论整个 Pull Request，也可以评论 feature 分支中某个特定的提交。
 
 ![qq20160127-4](https://cloud.githubusercontent.com/assets/7262715/12615732/67c8c872-c542-11e5-9734-71751b83f63c.png)
 
