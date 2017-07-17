@@ -278,10 +278,8 @@ git log --merges
 
 这些技巧是你 Git 工具箱中重要的部分，不过注意 `git log` 往往和其他 Git 命令连着使用。当你找到了你要的提交，你把它传给 `git checkout`、`git revert` 或是其他控制提交历史的工具。所以，请继续坚持 Git 高级用法的学习。
 
-
-
-> 这篇文章是[**「git-recipes」**](https://github.com/geeeeeeeeek/git-recipes/)的一部分，点击[**目录**](https://github.com/geeeeeeeeek/git-recipes/wiki/)查看所有章节。
+> 这篇文章是[**「git-recipes」**](https://github.com/geeeeeeeeek/git-recipes/)的一部分，点击 [**目录**](https://github.com/geeeeeeeeek/git-recipes/wiki/) 查看所有章节。
 >
-> 如果你觉得文章对你有帮助，欢迎点击右上角的 ***Star***:star2: 或 ***Fork***:fork_and_knife:。
+> 如果你觉得文章对你有帮助，欢迎点击右上角的 **Star** :star2: 或 **Fork** :fork_and_knife:。
 >
-> 如果你发现了错误，或是想要加入协作，请参阅[Wiki协作说明](https://github.com/geeeeeeeeek/git-recipes/issues/1)。
+> 如果你发现了错误，或是想要加入协作，请参阅 [Wiki 协作说明](https://github.com/geeeeeeeeek/git-recipes/issues/1)。

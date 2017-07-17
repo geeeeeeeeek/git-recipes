@@ -210,8 +210,8 @@ git merge temporary-branch
 
 另一方面，如果你想要保存项目完整的历史，并且避免重写公共分支上的 commit， 你可以使用 `git merge`。两种选项都很好用，但至少你现在多了 `git rebase` 这个选择。
 
-> 这篇文章是[**「git-recipes」**](https://github.com/geeeeeeeeek/git-recipes/)的一部分，点击[**目录**](https://github.com/geeeeeeeeek/git-recipes/wiki/)查看所有章节。
+> 这篇文章是[**「git-recipes」**](https://github.com/geeeeeeeeek/git-recipes/)的一部分，点击 [**目录**](https://github.com/geeeeeeeeek/git-recipes/wiki/) 查看所有章节。
 >
-> 如果你觉得文章对你有帮助，欢迎点击右上角的 ***Star***:star2: 或 ***Fork***:fork_and_knife:。
+> 如果你觉得文章对你有帮助，欢迎点击右上角的 **Star** :star2: 或 **Fork** :fork_and_knife:。
 >
-> 如果你发现了错误，或是想要加入协作，请参阅[Wiki协作说明](https://github.com/geeeeeeeeek/git-recipes/issues/1)。
+> 如果你发现了错误，或是想要加入协作，请参阅 [Wiki 协作说明](https://github.com/geeeeeeeeek/git-recipes/issues/1)。

@@ -4,7 +4,7 @@
 
 ## [目录](https://github.com/geeeeeeeeek/git-recipes/wiki/)
 
-git-recipes 的所有文章都以 Wiki 的方式呈现，请移步 [项目 Wiki](https://github.com/geeeeeeeeek/git-recipes/wiki/) 查看目录和详细内容。
+git-recipes 的所有文章都以 Wiki 的方式呈现，请移步项目 [Wiki](https://github.com/geeeeeeeeek/git-recipes/wiki/) 查看目录和详细内容。
 
 ## 我为什么要做这份菜单
 
