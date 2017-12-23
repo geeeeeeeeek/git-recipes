@@ -330,7 +330,7 @@ for root, dirs, files in os.walk('.'):
 
 `pre-rebase` 钩子在 `git rebase` 发生更改之前运行，确保不会有什么糟糕的事情发生。
 
-这个钩子有两个参数：frok 之前的上游分支，将要 rebase 的下游分支。如果 rebase 当前分支则第二个参数为空。以非 0 状态退出会放弃这次 rebase。
+这个钩子有两个参数：fork 之前的上游分支，将要 rebase 的下游分支。如果 rebase 当前分支则第二个参数为空。以非 0 状态退出会放弃这次 rebase。
 
 比如说，如果你想彻底禁用 rebase 操作，你可以使用下面的 `pre-rebase` 脚本：
 
