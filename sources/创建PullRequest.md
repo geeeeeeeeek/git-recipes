@@ -122,7 +122,7 @@ git commit -a -m "新功能的一些草稿"
 
 为了完成这个新功能，Mary 想创建多少个提交都可以。如果 feature 分支的历史有些乱，她可以使用交互式的 rebase 来移除或者拼接不必要的提交。对于大项目来说，清理 feature 的项目历史使得项目维护者更容易看清楚 Pull Request 的所处的进展。
 
-### Mary将feature分支推送到了她的GitHub仓库
+### Mary 将 feature 分支推送到了她的 GitHub 仓库
 
 ![Pull Requests: Push feature to Bitbucket repository](https://www.atlassian.com/git/images/tutorials/collaborating/making-a-pull-request/13.svg)
 
@@ -134,7 +134,7 @@ git push origin some-branch
 
 这样她的更改就可以被项目维护者看到了（或者任何有权限的协作者）。
 
-### Mary创建了一个Pull Request
+### Mary 创建了一个 Pull Request
 
 ![Pull Request: Create Pull Request](https://www.atlassian.com/git/images/tutorials/collaborating/making-a-pull-request/14.svg)
 
@@ -142,13 +142,13 @@ GitHub 上已经有了她的 feature 分支之后，Mary 可以找到被她 fork
 
 Mary 想要将她的功能并入主代码库，所以源分支就是她的 feature 分支，目标仓库就是 John 的公开仓库，目标分支为 `master`。她还需要提供一个 Pull Request 的标题和简介。
 
-> 下图展示的是将0492wzl/WeChatLuckyMoney(源仓库)的stable(源分支)合并到geeeeeeeeek/WeChatLuckyMoney(目标仓库)的stable(目标分支)。
+> 下图展示的是将 LitoMore/demo-project（源仓库）的 develop（源分支）合并到 LitoMore/demo-project（目标仓库）的 master（目标分支）。
 
-![qq20160127-2](https://cloud.githubusercontent.com/assets/7262715/12615530/3088775a-c541-11e5-914e-d8232037e741.png)
+![qq20160127-2](https://user-images.githubusercontent.com/8186898/36071353-e3aa9852-0f47-11e8-911d-dddd35de2694.png)
 
 在她创建了 Pull Request 之后，GitHub 会给 John 发送一条通知。
 
-### John审查了这个Pull Request
+### John 审查了这个 Pull Request
 
 ![qq20160127-3](https://cloud.githubusercontent.com/assets/7262715/12615618/b1373fd0-c541-11e5-9b91-47d40f8083ba.png)
 
