@@ -33,7 +33,7 @@ git merge master feature
 
 feature 分支中新的合并提交（merge commit）将两个分支的历史连在了一起。你会得到下面这样的分支结构：
 
-![enter image description here](https://www.atlassian.com/git/images/tutorials/advanced/merging-vs-rebasing/02.svg)
+![enter image description here](https://www.atlassian.com/dam/jcr:e229fef6-2c2f-4a4f-b270-e1e1baa94055/02.svg)
 
 
 
