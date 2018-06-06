@@ -1,6 +1,6 @@
-# 果壳中的 Git
+# 什么是 Git
 
-> ✍️ [houkensjtu](https://github.com/houkensjtu) | [Zhongyi Tong](https://github.com/geeeeeeeeek)
+> ✍️ [houkensjtu](https://github.com/houkensjtu) | [童仲毅](https://github.com/geeeeeeeeek)
 >
 > ©️ 本文演绎自 Atlassian 编写的 [_What is Git_](https://www.atlassian.com/git/tutorials/what-is-git)。页面上所有内容采用知识共享-署名（[CC BY 2.5 AU](http://creativecommons.org/licenses/by/2.5/au/deed.zh)）许可协议。
 
