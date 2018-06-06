@@ -1,4 +1,4 @@
-# 什么是 Git
+# 果壳中的 Git
 
 > ✍️ [houkensjtu](https://github.com/houkensjtu) | [Zhongyi Tong](https://github.com/geeeeeeeeek)
 >
