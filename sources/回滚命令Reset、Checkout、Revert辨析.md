@@ -8,7 +8,7 @@
 
 因为它们非常相似，所以我们经常会搞混，不知道什么场景下该用哪个命令。在这篇文章中，我们会比较 `git reset`、`git checkout` 和 `git revert` 最常见的用法。希望你在看完后能游刃有余地使用这些命令来管理你的仓库。
 
-![Git repo的主要组成](https://www.atlassian.com/git/images/tutorials/advanced/resetting-checking-out-and-reverting/01.svg)
+![Git repo的主要组成](https://wac-cdn.atlassian.com/dam/jcr:0c5257d5-ff01-4014-af12-faf2aec53cc3/01.svg)
 
 Git 仓库有三个主要组成——工作目录，缓存区和提交历史。这张图有助于理解每个命令到底产生了哪些影响。当你阅读的时候，牢记这张图。
 
@@ -27,7 +27,7 @@ git reset HEAD~2
 
 hotfix 分支末端的两个提交现在变成了悬挂提交。也就是说，下次 Git 执行垃圾回收的时候，这两个提交会被删除。换句话说，如果你想扔掉这两个提交，你可以这么做。reset 操作如下图所示：
 
-![把hotfix分支reset到HEAD~2](https://www.atlassian.com/git/images/tutorials/advanced/resetting-checking-out-and-reverting/02.svg)
+![把hotfix分支reset到HEAD~2](https://wac-cdn.atlassian.com/dam/jcr:4c7d368e-6e40-4f82-a315-1ed11316cf8b/02-updated.png)
 
 如果你的更改还没有共享给别人，`git reset` 是撤销这些更改的简单方法。当你开发一个功能的时候发现「糟糕，我做了什么？我应该重新来过！」时，reset 就像是 go-to 命令一样。
 
@@ -55,7 +55,7 @@ git checkout hotfix
 
 上面这个命令做的不过是将HEAD移到一个新的分支，然后更新工作目录。因为这可能会覆盖本地的修改，Git 强制你提交或者缓存工作目录中的所有更改，不然在 checkout 的时候这些更改都会丢失。和 `git reset` 不一样的是，`git checkout` 没有移动这些分支。
 
-![将 HEAD 从 master 移到 hotfix](https://www.atlassian.com/git/images/tutorials/advanced/resetting-checking-out-and-reverting/04.svg)
+![将 HEAD 从 master 移到 hotfix](https://wac-cdn.atlassian.com/dam/jcr:607f1b83-ee7d-494a-b7e2-338d810059fb/04-updated.png)
 
 除了分支之外，你还可以传入提交的引用来 checkout 到任意的提交。这和 checkout 到另一个分支是完全一样的：把 HEAD 移动到特定的提交。比如，下面这个命令会 checkout 到当前提交的祖父提交。
 
@@ -63,7 +63,7 @@ git checkout hotfix
 git checkout HEAD~2
 ```
 
-![将 HEAD 移动到任意 commit](https://www.atlassian.com/git/images/tutorials/advanced/resetting-checking-out-and-reverting/05.svg)
+![将 HEAD 移动到任意 commit](https://wac-cdn.atlassian.com/dam/jcr:3034be0a-fc7b-4c64-b9cd-3ebc8abf3833/05.svg)
 
 这对于快速查看项目旧版本来说非常有用。但如果你当前的 HEAD 没有任何分支引用，那么这会造成 HEAD 分离。这是非常危险的，如果你接着添加新的提交，然后切换到别的分支之后就没办法回到之前添加的这些提交。因此，在为分离的 HEAD 添加新的提交的时候你应该创建一个新的分支。
 
@@ -78,7 +78,7 @@ git revert HEAD~2
 
 如下图所示：
 
-![revert到倒数第二个commit](https://www.atlassian.com/git/images/tutorials/advanced/resetting-checking-out-and-reverting/06.svg)
+![revert到倒数第二个commit](https://wac-cdn.atlassian.com/dam/jcr:73d36b14-72a7-4e96-a5bf-b86629d2deeb/06.svg)
 
 相比 `git reset`，它不会改变现在的提交历史。因此，`git revert` 可以用在公共分支上，`git reset` 应该用在私有分支上。
 
@@ -100,7 +100,7 @@ git reset HEAD~2 foo.py
 
 和提交层面的 `git reset` 一样，通常我们使用HEAD而不是某个特定的提交。运行 `git reset HEAD foo.py` 会将当前的 `foo.py` 从缓存区中移除出去，而不会影响工作目录中对 `foo.py` 的更改。
 
-![将一个文件从 commit 历史中移动到 stage 缓存中](https://www.atlassian.com/git/images/tutorials/advanced/resetting-checking-out-and-reverting/07.svg)
+![将一个文件从 commit 历史中移动到 stage 缓存中](https://wac-cdn.atlassian.com/dam/jcr:1a010f5a-c90d-49ee-a0e6-31054433e2d4/07.svg)
 
 `--soft`、`--mixed` 和 `--hard` 对文件层面的 `git reset` 毫无作用，因为缓存区中的文件一定会变化，而工作目录中的文件一定不变。
 
@@ -108,7 +108,7 @@ git reset HEAD~2 foo.py
 
 Checkout 一个文件和带文件路径 `git reset` 非常像，除了它更改的是工作目录而不是缓存区。不像提交层面的 checkout 命令，它不会移动  HEAD引用，也就是你不会切换到别的分支上去。
 
-![将文件从提交历史移动到工作目录中](https://www.atlassian.com/git/images/tutorials/advanced/resetting-checking-out-and-reverting/08.svg)
+![将文件从提交历史移动到工作目录中](https://wac-cdn.atlassian.com/dam/jcr:cc252fc0-fc76-4740-8458-9c0d7af94bca/08.svg)
 
 比如，下面这个命令将工作目录中的 `foo.py` 同步到了倒数第二个提交中的 `foo.py`。
 
