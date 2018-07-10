@@ -14,7 +14,7 @@ Pull Request 是开发者使用 GitHub 进行协作的利器。这个功能为�
 
 但是，Pull Request 不只是一个通知，还是一个专注于某个提议功能的讨论版。 如果更改导致了任何问题，团队成员可以在 Pull Request 下发布反馈，甚至推送后续提交来修改这个 Pull Request。所有的活动都在这个 Pull Request里之间追踪。
 
-![Git Workflows: Activity inside a Pull Request](https://www.atlassian.com/git/images/tutorials/collaborating/making-a-pull-request/02.svg)
+![Git Workflows: Activity inside a Pull Request](https://wac-cdn.atlassian.com/dam/jcr:dc1a0821-efd6-4852-b7e6-c3a787656c61/02.svg)
 
 和其他协作模型相比，这种共享提交的解决方案形成了更加线性的工作流。SVN 和 Git 都能通过一个简单的脚本发送通知邮件；但是，如果要讨论更改，开发者不得不在邮件里回复。这会变得愈发杂乱无章，尤其是后续提交出现时。Pull Request 将所有这些功能放入了一个友好的网页，在每个 GitHub 仓库上方都能找到。
 
@@ -22,7 +22,7 @@ Pull Request 是开发者使用 GitHub 进行协作的利器。这个功能为�
 
 当你提交一个 Pull Request 的时候，你做的事情是 *请求（request）* 另一个开发者（比如项目维护者）来 *拉取（pull）* 你仓库中的一个分支到他们的仓库。也就是说你需要提供 4 个信息来完成一个 Pull Request：源仓库、源分支、目标仓库、目标分支。
 
-![Git Workflows: Pull Requests](https://www.atlassian.com/git/images/tutorials/collaborating/making-a-pull-request/03.svg)
+![Git Workflows: Pull Requests](https://wac-cdn.atlassian.com/dam/jcr:3a777a86-6106-4484-b75d-f2f19abc0e7f/03.svg)
 
 GitHub 会机智地帮你将一些值设为默认值。但是，取决于你的协作工作流，你的团队可能需要设置不同的值。上图显示了一个请求从 feature 分支合并到官方  master分支的一个 Pull Request，但除此之外还有好多种使用 Pull Request 的方式。
 
@@ -42,7 +42,7 @@ Pull Request 可以和 feature 分支工作流、GitFlow 工作流或者 Fork �
 
 Feature 分支工作流使用共享的 GitHub 仓库来管理协作，开发者在单独的 feature 分支中添加功能。开发者在将代码并入主代码库之前，应该发起一个 Pull Request 来启动这个功能的讨论，而不是直接将它们合并到 `master`。
 
-![Pull Request: Feature Branch workflow](https://www.atlassian.com/git/images/tutorials/collaborating/making-a-pull-request/04.svg)
+![Pull Request: Feature Branch workflow](https://wac-cdn.atlassian.com/dam/jcr:8c784aa1-3393-49b7-b4c5-2b91bf3aa48a/04.svg)
 
 在 Feature 分支工作流中只有一个公共的仓库，因此 Pull Request 的目标和源仓库永远是同一个。一般来说，开发者会将他们的  feature分支作为源分支，`master` 作为目标分支。
 
@@ -54,9 +54,9 @@ Feature 分支工作流使用共享的 GitHub 仓库来管理协作，开发者�
 
 GitFlow 工作流和 Feature 分支工作流类似，但定义了围绕项目发布的一个严格的分支模型。在 GitFlow 工作流之上添加 Pull Request 使得开发者方便地讨论发布分支或是所在的维护分支。
 
-![Pull Requests: Gitflow Workflow](https://www.atlassian.com/git/images/tutorials/collaborating/making-a-pull-request/05.svg)
+![Pull Requests: Gitflow Workflow](https://wac-cdn.atlassian.com/dam/jcr:50c76de3-6c5b-4adf-9a96-a611cc3dbebc/05.svg)
 
-![Pull Requests: Gitflow Workflow 2](https://www.atlassian.com/git/images/tutorials/collaborating/making-a-pull-request/06.svg)
+![Pull Requests: Gitflow Workflow 2](https://wac-cdn.atlassian.com/dam/jcr:a5c54fd9-09d7-4f59-90c1-8b228fec80a5/06.svg)
 
 在 GitFlow 工作流中的 Pull Request 和上一节中的完全一致：开发者只需在功能、发布或是快速修复分支需要审查时发布一个 Pull Request，GitHub 会通知到其余的团队成员。
 
@@ -68,13 +68,13 @@ GitFlow 工作流和 Feature 分支工作流类似，但定义了围绕项目发
 
 在这个工作流中，Pull Request 的通知作用显得非常有用，因为项目维护者无法获知其他开发者什么时候向他们自己的 GitHub 仓库中添加了提交。
 
-![Pull Requests: Forking workflow](https://www.atlassian.com/git/images/tutorials/collaborating/making-a-pull-request/07.svg)
+![Pull Requests: Forking workflow](https://wac-cdn.atlassian.com/dam/jcr:2510a321-ba5f-4c31-82ec-f3ad062c8e6d/07.svg)
 
 因为每个开发者都有他们自己的公共仓库，Pull Request 的源仓库和目标仓库不是同一个。源仓库是开发者的公开仓库，源分支是包含提议更改的那一个。如果开发者想要将功能合并到主代码库，目标仓库便是官方的项目仓库，目标分支为 `master`。
 
 Pull Request 还可以用来和官方项目之外的开发者进行协作。比如说，一个开发者正在和同事一起开发一个功能，他们可以向 *同事的* GitHub 仓库发起一个 Pull Request，而不是官方仓库。他们将 feature 分支同时作为源分支和目标分支。
 
-![Pull Requests: Forking workflow](https://www.atlassian.com/git/images/tutorials/collaborating/making-a-pull-request/08.svg)
+![Pull Requests: Forking workflow](https://wac-cdn.atlassian.com/dam/jcr:0907a594-5786-47fb-87b4-05fc08e0c8dc/08.svg)
 
 两个开发者可以在 Pull Request 中讨论和开发分支。当功能完成时，其中一位可以发起另一个 Pull Request，请求将功能合并到官方的 master 分支中去。这种灵活性使得 Pull Request 成为了 Fork 工作流中尤为强大的协作工具。
 
@@ -86,7 +86,7 @@ Pull Request 还可以用来和官方项目之外的开发者进行协作。比�
 
 ### Mary fork了官方项目
 
-![Pull Requests: Fork the project](https://www.atlassian.com/git/images/tutorials/collaborating/making-a-pull-request/09.svg)
+![Pull Requests: Fork the project](https://wac-cdn.atlassian.com/dam/jcr:8b3d2111-5a88-4802-967c-71f51c248b03/09.svg)
 
 为了参与这个项目，Mary 首先要做的是 fork 属于 John 的 GitHub 仓库。她需要注册登录 GitHub，找到 John 的仓库，点击 Fork 按钮。
 
@@ -98,7 +98,7 @@ Pull Request 还可以用来和官方项目之外的开发者进行协作。比�
 
 ### Mary 克隆了她的 GitHub 仓库
 
-![Pull Request: Clone the Bitbucket repo](https://www.atlassian.com/git/images/tutorials/collaborating/making-a-pull-request/11.svg)
+![Pull Request: Clone the Bitbucket repo](https://wac-cdn.atlassian.com/dam/jcr:4f051d96-8ce7-4aab-af74-b2de38c41443/11.svg)
 
 接下来，Mary 需要将她刚刚 fork 的 GitHub 仓库克隆下来。她在本地会有一份项目的副本。她需要运行下面这个命令：
 
@@ -110,7 +110,7 @@ git clone https://github.com/user/repo.git
 
 ### Mary 开发了一个新功能
 
-![Pull Requests: develop a new feature](https://www.atlassian.com/git/images/tutorials/collaborating/making-a-pull-request/12.svg)
+![Pull Requests: develop a new feature](https://wac-cdn.atlassian.com/dam/jcr:f0979362-cf67-413d-bac1-8275e20aea58/12.svg)
 
 在她写任何代码之前，Mary 需要为这个功能创建一个新的分支。这个分支将是她随后发起 Pull Request 时要用到的源分支。
 
@@ -124,7 +124,7 @@ git commit -a -m "新功能的一些草稿"
 
 ### Mary 将 feature 分支推送到了她的 GitHub 仓库
 
-![Pull Requests: Push feature to Bitbucket repository](https://www.atlassian.com/git/images/tutorials/collaborating/making-a-pull-request/13.svg)
+![Pull Requests: Push feature to Bitbucket repository](https://wac-cdn.atlassian.com/dam/jcr:d3a07e01-ad5c-4e11-929a-87c049a27a6b/13.svg)
 
 在功能完成后，Mary 使用简单的 `git push` 将 feature 分支推送到了她自己的 GitHub 仓库上（不是官方的仓库）：
 
@@ -136,7 +136,7 @@ git push origin some-branch
 
 ### Mary 创建了一个 Pull Request
 
-![Pull Request: Create Pull Request](https://www.atlassian.com/git/images/tutorials/collaborating/making-a-pull-request/14.svg)
+![Pull Request: Create Pull Request](https://wac-cdn.atlassian.com/dam/jcr:36f8c233-ef70-41ce-8b91-4f21dd735817/14.svg)
 
 GitHub 上已经有了她的 feature 分支之后，Mary 可以找到被她 fork 的仓库，点击项目简介下的 *New Pull Request* 按钮，用她的 GitHub 账号创建一个 Pull Request。Mary 的仓库会被默认设置为源仓库（head fork），询问她指定源分支（compare）、目标仓库（base fork）和目标分支（base）。
 
