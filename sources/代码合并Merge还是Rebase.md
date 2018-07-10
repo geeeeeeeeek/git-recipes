@@ -12,7 +12,7 @@
 
 想象一下，你刚创建了一个专门的分支开发新功能，然后团队中另一个成员在 master 分支上添加了新的提交。这就会造成提交历史被 fork 一份，用 Git 来协作的开发者应该都很清楚。
 
-![enter image description here](https://www.atlassian.com/git/images/tutorials/advanced/merging-vs-rebasing/01.svg)
+![enter image description here](https://www.atlassian.com/dam/jcr:01b0b04e-64f3-4659-af21-c4d86bc7cb0b/01.svg)
 
 现在，如果 master 中新的提交和你的工作是相关的。为了将新的提交并入你的分支，你有两个选择：merge 或 rebase。
 
@@ -52,7 +52,7 @@ git rebase master
 
 它会把整个 feature 分支移动到 master 分支的后面，有效地把所有 master 分支上新的提交并入过来。但是，rebase 为原分支上每一个提交创建一个新的提交，重写了项目历史，并且不会带来合并提交。
 
-![enter image description here](https://www.atlassian.com/git/images/tutorials/advanced/merging-vs-rebasing/03.svg)
+![enter image description here](https://wac-cdn.atlassian.com/dam/jcr:5b153a22-38be-40d0-aec8-5f2fffc771e5/03.svg)
 
 rebase最大的好处是你的项目历史会非常整洁。首先，它不像 `git merge` 那样引入不必要的合并提交。其次，如上图所示，rebase 导致最后的项目历史呈现出完美的线性——你可以从项目终点到起点浏览而不需要任何的 fork。这让你更容易使用 `git log`、`git bisect` 和 `gitk` 来查看项目历史。
 
@@ -87,7 +87,7 @@ pick 5c67e61 Message for commit #3
 
 保存后关闭文件，Git 会根据你的指令来执行 rebase，项目历史看上去会是这样：
 
-![enter image description here](https://www.atlassian.com/git/images/tutorials/advanced/merging-vs-rebasing/04.svg)
+![enter image description here](https://wac-cdn.atlassian.com/dam/jcr:fe6942b4-7a60-4464-9181-b67e59e50788/04.svg)
 
 忽略不重要的提交会让你的 feature 分支的历史更清晰易读。这是 `git merge` 做不到的。
 
@@ -97,7 +97,7 @@ pick 5c67e61 Message for commit #3
 
 比如说，如果你把 master 分支 rebase 到你的 feature 分支上会发生什么：
 
-![enter image description here](https://www.atlassian.com/git/images/tutorials/advanced/merging-vs-rebasing/05.svg)
+![enter image description here](https://wac-cdn.atlassian.com/dam/jcr:1d22f018-b2c7-4096-9db1-c54940cf4f4e/05.svg)
 
 这次 rebase 将 master 分支上的所有提交都移到了 feature 分支后面。问题是它只发生在你的代码仓库中，其他所有的开发者还在原来的 master 上工作。因为 rebase 引起了新的提交，Git 会认为你的 master 分支和其他人的 master 已经分叉了。
 
@@ -126,7 +126,7 @@ rebase 可以或多或少应用在你们团队的 Git 工作流中。在这一�
 
 第一步是在任何和 `git rebase` 有关的工作流中为每一个 feature 专门创建一个分支。它会给你带来安全使用 rebase 的分支结构：
 
-![enter image description here](https://www.atlassian.com/git/images/tutorials/advanced/merging-vs-rebasing/06.svg)
+![enter image description here](https://wac-cdn.atlassian.com/dam/jcr:6af9de07-088b-4f8b-97a7-b66569a9e4ac/06.svg)
 
 ### 本地清理
 
@@ -141,7 +141,7 @@ git rebase -i HEAD~3
 
 通过指定 `HEAD~3` 作为新的基提交，你实际上没有移动分支——你只是将之后的 3 次提交重写了。注意它不会把上游分支的更改并入到 feature 分支中。
 
-![enter image description here](https://www.atlassian.com/git/images/tutorials/advanced/merging-vs-rebasing/07.svg)
+![enter image description here](https://wac-cdn.atlassian.com/dam/jcr:079532c4-2594-40ed-a5c4-0e3621b9edff/07.svg)
 
 如果你想用这个方法重写整个 feature 分支，`git merge-base` 命令非常方便地找出 feature 分支开始分叉的基。下面这段命令返回基提交的 ID，你可以接下来将它传给 `git rebase`：
 
@@ -165,11 +165,11 @@ git merge-base feature master
 
 比如说，如果你和另一个开发者 John 往 feature 分支上添加了几个提交，在从 John 的仓库中 fetch 之后，你的仓库可能会像下面这样：
 
-![enter image description here](https://www.atlassian.com/git/images/tutorials/advanced/merging-vs-rebasing/08.svg)
+![enter image description here](https://wac-cdn.atlassian.com/dam/jcr:0bb661aa-361d-47ba-8c7b-00b3be0546cb/08.svg)
 
 就和并入 master 上的上游更改一样，你可以这样解决这个 fork：要么 merge 你的本地分支和 John 的分支，要么把你的本地分支 rebase 到 John 的分支后面。
 
-![enter image description here](https://www.atlassian.com/git/images/tutorials/advanced/merging-vs-rebasing/09.svg)
+![enter image description here](https://wac-cdn.atlassian.com/dam/jcr:1896adb1-5d49-419a-9b50-3a36adac186c/09.svg)
 
 注意，这里的 rebase 没有违反 rebase 黄金法则，因为只有你的本地分支上的 commit 被移动了，之前的所有东西都没有变。这就像是在说「把我的改动加到 John 的后面去」。在大多数情况下，这比通过合并提交来同步远程分支更符合直觉。
 
@@ -189,7 +189,7 @@ git merge-base feature master
 
 这和将上游改动并入 feature 分支很相似，但是你不可以在 master 分支重写提交，你最后需要用 `git merge` 来并入这个 feature。但是，在 merge 之前执行一次 rebase，你可以确保 merge 是一直向前的，最后生成的是一个完全线性的提交历史。这样你还可以加入 Pull Request 之后的提交。
 
-![enter image description here](https://www.atlassian.com/git/images/tutorials/advanced/merging-vs-rebasing/10.svg)
+![enter image description here](https://wac-cdn.atlassian.com/dam/jcr:df39b1f1-2686-4ee5-90bf-9836783342ce/10.svg)
 
 如果你还没有完全熟悉 `git rebase`，你还可以在一个临时分支中执行 rebase。这样的话，如果你意外地弄乱了你 feature 分支的历史，你还可以查看原来的分支然后重试。
 
