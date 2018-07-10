@@ -6,7 +6,7 @@
 
 Git 钩子是在 Git 仓库中特定事件发生时自动运行的脚本。它可以让你自定义 Git 内部的行为，在开发周期中的关键点触发自定义的行为。
 
-![enter image description here](https://www.atlassian.com/git/images/tutorials/advanced/git-hooks/01.svg)
+![enter image description here](https://wac-cdn.atlassian.com/dam/jcr:ac22adee-d740-4216-a92a-33c14b5623e5/01.svg)
 
 Git 钩子最常见的使用场景包括推行提交规范，根据仓库状态改变项目环境，和接入持续集成工作流。但是，因为脚本可以完全定制，你可以用 Git 钩子来自动化或者优化你开发工作流中任意部分。
 
@@ -78,7 +78,7 @@ with open(commit_msg_filepath, 'w') as f:
 
 在开发团队中维护钩子是比较复杂的，因为 `.git/hooks` 目录不随你的项目一起拷贝，也不受版本控制影响。一个简单的解决办法是把你的钩子存在项目的实际目录中（在 `.git` 外）。这样你就可以像其他文件一样进行版本控制。为了安装钩子，你可以在 `.git/hooks` 中创建一个符号链接，或者简单地在更新后把它们复制到 `.git/hooks` 目录下。
 
-![enter image description here](https://www.atlassian.com/git/images/tutorials/advanced/git-hooks/02.svg)
+![enter image description here](https://wac-cdn.atlassian.com/dam/jcr:e068ea71-a552-4d07-9917-49104f4d382e/02.svg)
 
 作为备选方案，Git 同样提供了一个模板目录机制来更简单地自动安装钩子。每次你使用 `git init` 或 `git clone` 时，模板目录文件夹下的所有文件和目录都会被复制到 `.git` 文件夹。
 
