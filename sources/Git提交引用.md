@@ -6,7 +6,7 @@
 
 提交是 Git 的精髓所在，你无时不刻不在创建和缓存提交、查看以前的提交，或者用各种Git命令在仓库间转移你的提交。大多数的命令都对同一个提交操作，而有些会接受提交的引用作为参数。比如，你可以给 `git checkout` 传入一个引用来查看以前的提交，或者传入一个分支名来切换到对应的分支。
 
-![引用一次提交的各种方式](https://www.atlassian.com/git/images/tutorials/advanced/refs-and-the-reflog/01.svg)
+![引用一次提交的各种方式](https://wac-cdn.atlassian.com/dam/jcr:62440330-6153-4f43-9554-b94c7b205e62/01.svg)
 
 知道提交的各种引用方式之后，Git 的命令就会变得更加强大。在这章中，我们研究提交的各种引用方式，来一窥 `git checkout`、`git branch`、`git push` 等命令的工作原理。
 
@@ -208,7 +208,7 @@ git show HEAD^2^1
 
 为了阐明 `~` 和 `^` 是如何工作的，下面这张图告诉你如何使用相对引用，来指向任意的提交。有的提交可以通过多种方式引用。
 
-![Accessing commits using relative refs](https://www.atlassian.com/git/images/tutorials/advanced/refs-and-the-reflog/02.svg)
+![Accessing commits using relative refs](https://wac-cdn.atlassian.com/dam/jcr:cb2ce970-3ef4-4eda-96a9-fe990745f5a7/02.svg)
 
 相对引用在命令中的用法和普通的引用相同。比如，下面所有命令中使用的都是相对引用：
 
