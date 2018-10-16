@@ -106,7 +106,7 @@ git reset HEAD~2 foo.py
 
 ### Checkout
 
-Checkout 一个文件和带文件路径 `git reset` 非常像，除了它更改的是工作目录而不是缓存区。不像提交层面的 checkout 命令，它不会移动  HEAD引用，也就是你不会切换到别的分支上去。
+Checkout 一个文件和带文件路径 `git reset` 非常像，但它同时更改工作目录和缓存区。不像提交层面的 checkout 命令，它不会移动  HEAD引用，也就是你不会切换到别的分支上去。
 
 ![将文件从提交历史移动到工作目录中](https://www.atlassian.com/git/images/tutorials/advanced/resetting-checking-out-and-reverting/08.svg)
 
